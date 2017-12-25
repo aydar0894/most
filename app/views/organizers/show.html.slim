@@ -1,0 +1,32 @@
+p#notice = notice
+
+p
+  strong User:
+  = @organizer.user.email
+p
+  strong Company name:
+  = @organizer.company_name
+
+=> link_to 'Edit', edit_organizer_path(@organizer)
+'|
+=< link_to 'Back', organizers_path
+
+= link_to 'Создать новое событие',
+  new_organizer_event_path(@organizer),
+  class: "btn btn-sm btn-success"
+
+h2 Events available
+table.table
+  thead
+    tr
+      th id
+      th Название
+     
+  tbody
+    - @events_available&.each do |event|
+      tr
+        td
+          = event.id
+        td
+          = link_to event.title, event
+   

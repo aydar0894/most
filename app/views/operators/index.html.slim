@@ -1,0 +1,27 @@
+h1 Listing operators
+
+table
+  thead
+    tr
+      th First name
+      th Last name
+      th Middle name
+      th User
+      th
+      th
+      th
+
+  tbody
+    - @operators.each do |operator|
+      tr
+        td = operator.first_name
+        td = operator.last_name
+        td = operator.middle_name
+        td = operator.user
+        td = link_to 'Show', operator
+        td = link_to 'Edit', edit_operator_path(operator)
+        td = link_to 'Destroy', operator, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Operator', new_operator_path

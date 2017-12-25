@@ -1,0 +1,12 @@
+= form_for @event do |f|  
+  
+  .field
+    = f.label :title
+    = f.text_area :title
+  .field
+    = f.label :start
+    = f.datetime_select :start
+  .field
+    = f.label :finish
+    = f.datetime_select :finish
+  .actions = f.submit

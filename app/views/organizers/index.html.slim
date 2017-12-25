@@ -1,0 +1,23 @@
+h1 Listing organizers
+
+table
+  thead
+    tr
+      th User
+      th Company name
+      th
+      th
+      th
+
+  tbody
+    - @organizers.each do |organizer|
+      tr
+        td = organizer.user
+        td = organizer.company_name
+        td = link_to 'Show', organizer
+        td = link_to 'Edit', edit_organizer_path(organizer)
+        td = link_to 'Destroy', organizer, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Organizer', new_organizer_path

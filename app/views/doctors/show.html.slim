@@ -1,0 +1,50 @@
+p#notice = notice
+
+p
+  strong First name:
+  = @doctor.first_name
+p
+  strong Last name:
+  = @doctor.last_name
+p
+  strong Middle name:
+  = @doctor.middle_name
+p
+  strong Birth date:
+  = @doctor.birth_date
+p
+  strong User:
+  = @doctor.user
+
+=> link_to 'Edit', edit_doctor_path(@doctor)
+'|
+=< link_to 'Back', doctors_path
+
+
+h2 Events available
+table.table
+  thead
+    tr
+      th id
+      th Название
+      th Статус
+  tbody
+    - @events_available.each do |event|
+      tr
+        td
+          = event.id
+        td
+          = link_to event.title, event
+        td
+          - unless @doctor.events.ids.include?(event.id)
+            span.badge.badge-default
+              | Доступно для регистрации
+            = link_to 'Зарегистрироваться',
+              doctor_event_register_path(@doctor, event),
+              class: "btn btn-sm btn-success" ,
+              method: :post
+          - else
+            span.badge.badge-success
+              | Вы зарегистрированы
+            .btn.btn-danger
+              | Отменить регистрацию

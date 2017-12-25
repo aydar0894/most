@@ -1,0 +1,16 @@
+= form_for @operator do |f|
+ 
+
+  .field
+    = f.label :first_name
+    = f.text_area :first_name
+  .field
+    = f.label :last_name
+    = f.text_area :last_name
+  .field
+    = f.label :middle_name
+    = f.text_area :middle_name
+  .field
+    = f.label :user
+    = f.text_field :user
+  .actions = f.submit

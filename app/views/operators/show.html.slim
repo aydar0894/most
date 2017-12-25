@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong First name:
+  = @operator.first_name
+p
+  strong Last name:
+  = @operator.last_name
+p
+  strong Middle name:
+  = @operator.middle_name
+p
+  strong User:
+  = @operator.user
+
+=> link_to 'Edit', edit_operator_path(@operator)
+'|
+=< link_to 'Back', operators_path
