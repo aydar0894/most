@@ -1,0 +1,21 @@
+.role-radio {
+  display: inline-block !important;
+}
+.rale-radio-label {
+  // float: left;
+  display: inline-block !important;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+
+#reg-form-organized {
+  display: none;
+}
+
+#reg-radio-organizer:checked ~ #reg-form #reg-form-organized {
+  display: block;
+}
+
+#reg-radio-organizer:checked ~ #reg-form #reg-form-doctor {
+  display: none;
+}
