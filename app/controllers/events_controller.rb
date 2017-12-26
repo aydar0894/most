@@ -6,12 +6,12 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    if current_user.is_organizer
-      @events = Event.where(organizer_id: @organizer.id)    
+    if current_user.organizer?
+      @events = Event.where(organizer_id: @organizer.id)
     elsif
       @events = Event.all
     end
-    
+
   end
 
   # GET /events/1
@@ -48,7 +48,7 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
-  def update    
+  def update
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
