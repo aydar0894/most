@@ -12,6 +12,6 @@ class User < ApplicationRecord
 				 :recoverable, :rememberable, :trackable, :validatable
 
 	def self.registration_roles
-		return [:doctor, :organizer]
+		return [:doctor, :organizer, :operator]
 	end
 end
