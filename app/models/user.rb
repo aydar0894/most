@@ -14,4 +14,19 @@ class User < ApplicationRecord
 	def self.registration_roles
 		return [:doctor, :organizer, :operator]
 	end
+
+	def profile
+		case self.role.to_sym
+		when :doctor
+			return Doctor.find_by(user_id: self.id)
+		when :orginzer
+			return Organizer.find_by(user_id: self.id)
+		when :operator
+			return Operator.find_by(user_id: self.id)
+		when :admin
+			return self
+		when :user
+			return self
+		end
+	end
 end
