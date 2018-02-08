@@ -1,5 +1,5 @@
-= form_for @event do |f|  
-  
+= form_for @event do |f|
+
   .field
     = f.label :title
     = f.text_area :title
@@ -9,4 +9,10 @@
   .field
     = f.label :finish
     = f.datetime_select :finish
+  .field
+    = f.label :logo
+    = f.file_field :logo
+  .field 
+    = f.label :max_participants
+    = f.number_field :max_participants
   .actions = f.submit

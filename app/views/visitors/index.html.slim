@@ -1,20 +1,5 @@
-<<<<<<< HEAD
-= render './layouts/nav_links_for_auth'
-
-- if user_signed_in?
-  - case current_user.role
-    - when 'doctor'
-      = link_to "Кабинет доктора", edit_doctor_path(current_user.profile)
-    - when :orginizer
-      = link_to "Кабинет организатора", edit_organizer_path(current_user.profile)
-    - when :operator
-      = link_to "Кабинет оператора", edit_operator_path(current_user.profile)
-    - when :admin
-      = link_to "Кабинет оператора", admin_root_path
-
 h3
-  | Welcome
-=======
+  | Добро пожаловать
 section#top-page
 
 section#description.bg-main
@@ -63,4 +48,3 @@ section#socials.row.mx-0
       = image_tag 'socials/youtube', class: 'social-icon'
     = link_to '#', class: 'social-link'
       = image_tag 'socials/facebook', class: 'social-icon'
->>>>>>> development
