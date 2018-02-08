@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def new
     # abort User.roles.inspect
-
+    @navigation_page = :sign_up
     @user = User.new
   end
 
