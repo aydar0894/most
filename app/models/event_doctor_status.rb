@@ -1,3 +1,3 @@
-class DoctorEventStatus < ActiveRecord::Base
+class EventDoctorStatus < ActiveRecord::Base
   belongs_to :event_doctors, :foreign_key => [:event_id, :doctor_id]
 end

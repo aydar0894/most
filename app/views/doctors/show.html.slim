@@ -51,16 +51,19 @@ table.table
       th Название
       th Статус
   tbody
-    - @doctor.events.each do |event|
+    - @doctor.event_doctors.each do |event_doctor|
       tr
         td
-          = event.id
+          = event_doctor.event.id
         td
-          = link_to event.title, event
+          = link_to event_doctor.event.title, event_doctor.event
         td
           span.badge.badge-success
             | Вы зарегистрированы
+        td
+          = image_tag event_doctor.qrcode.url(:thumb)
+        td
           = link_to "Отменить регистрацию",
-          doctor_event_unregister_path(@doctor, event),
+          doctor_event_unregister_path(@doctor, event_doctor.event),
           class: "btn btn-danger",
           method: :delete
