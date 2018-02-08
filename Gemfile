@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'slim-rails'
 gem 'rqrcode'
+gem 'composite_primary_keys'
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'

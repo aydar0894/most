@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171225001511) do
+ActiveRecord::Schema.define(version: 20180208013651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,12 +39,14 @@ ActiveRecord::Schema.define(version: 20171225001511) do
     t.bigint "doctor_id"
     t.integer "status"
     t.index ["doctor_id"], name: "index_event_doctors_on_doctor_id"
+    t.index ["event_id", "doctor_id"], name: "index_event_doctors_on_event_id_and_doctor_id", unique: true
     t.index ["event_id"], name: "index_event_doctors_on_event_id"
   end
 
   create_table "event_operators", force: :cascade do |t|
     t.bigint "event_id"
     t.bigint "operator_id"
+    t.index ["event_id", "operator_id"], name: "index_event_operators_on_event_id_and_operator_id", unique: true
     t.index ["event_id"], name: "index_event_operators_on_event_id"
     t.index ["operator_id"], name: "index_event_operators_on_operator_id"
   end

@@ -10,7 +10,7 @@ class DoctorsController < ApplicationController
 
 
   def show
-    @events_available = Event.all
+
   end
 
   # GET /doctors/new
@@ -87,8 +87,7 @@ class DoctorsController < ApplicationController
   # DELETE /doctors/1/events/1
   def unregister
     @doctor = Doctor.find(params[:doctor_id])
-    @doctor_event = @doctor.event_doctors.find(:event_id => params[:event_id])
-    @doctor_event.destroy
+    @doctor_event = @doctor.event_doctors.where(event_id: params[:event_id]).first.destroy
     respond_to do |format|
       format.html { redirect_to doctor_events_path(@doctor), notice: 'Вы отказались от посещения мероприятие.' }
       format.json { head :no_content}

@@ -29,7 +29,7 @@ table.table
       th Название
       th Статус
   tbody
-    - @events_available.each do |event|
+    - @doctor.events_available.each do |event|
       tr
         td
           = event.id
@@ -60,5 +60,7 @@ table.table
         td
           span.badge.badge-success
             | Вы зарегистрированы
-          .btn.btn-danger
-            | Отменить регистрацию
+          = link_to "Отменить регистрацию",
+          doctor_event_unregister_path(@doctor, event),
+          class: "btn btn-danger",
+          method: :delete
