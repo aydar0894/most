@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :doctors do
     resources :events, only: [:index, :show, :register, :unfollow] do
       match 'register' => 'doctors#register', via: :post, as: :register
-      match 'unregister' => 'doctors#unregister', via: :delete, as: :unregister
+      match 'unfollow' => 'doctors#unfollow', via: :delete, as: :unfollow
     end
   end
 

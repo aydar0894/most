@@ -1,22 +1,22 @@
 p#notice = notice
 
 #profile-tabs
-  ul.nav.nav-tabs
-    li.active
-      a href='#profile-info'  data-toggle="tab"
+  ul.nav.nav-tabs role="tablist"
+    li.nav-item
+      a.nav-link.active href='#profile-info'  data-toggle="tab"
         | Ваш личный профиль
-    li
-      a href='#profile-available__events' data-toggle="tab"
+    li.nav-item
+      a.nav-link href='#profile-available__events' data-toggle="tab"
         | Запланировать мероприятие
-    li
-      a href='#profile-doctor__events'  data-toggle="tab"
+    li.nav-item
+      a.nav-link href='#profile-doctor__events'  data-toggle="tab"
         | План моих мероприятий
-    li
-      a href='#profile-archive__events'  data-toggle="tab"
+    li.nav-item
+      a.nav-link href='#profile-archive__events'  data-toggle="tab"
         | Архив посещенных мероприятий
 
   .tab-content
-    #profile-info.tab-pane.fade.in.active
+    #profile-info.tab-pane.fade.show.active
       p
         strong Фото
         = image_tag @doctor.avatar.url(:thumb)
@@ -84,7 +84,7 @@ p#notice = notice
                 = image_tag event.event_doctors.find_by_doctor_id(@doctor.id).qrcode.url(:thumb)
               td
                 = link_to "Отменить регистрацию",
-                  doctor_event_unregister_path(@doctor, event),
+                  doctor_event_unfollow_path(@doctor, event),
                   class: "btn btn-danger",
                   method: :delete
 

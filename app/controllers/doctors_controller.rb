@@ -87,7 +87,7 @@ class DoctorsController < ApplicationController
   end
 
   # DELETE /doctors/1/events/1
-  def unregister
+  def unfollow
     @doctor = Doctor.find(params[:doctor_id])
     @event = Event.find(params[:event_id])
     @event.reggistrations_count -= 1
