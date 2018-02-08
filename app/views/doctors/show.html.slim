@@ -28,31 +28,33 @@ p#notice = notice
 
       => link_to 'Редактировать профиль', edit_doctor_path(@doctor)
     #profile-available__events.tab-pane.fade
-      table.table
-        thead
-          tr
-            th id
-            th Лого
-            th Название
-            th Статус
-            th Действия
-        tbody
-          - @doctor.events_available.each do |event|
-            tr
-              td
-                = event.id
-              td
-                = image_tag event.logo.url(:thumb)
-              td
-                = link_to event.title, event
-              td
-                span.badge.badge-default
-                  | Доступно для регистрации
-              td
-                = link_to 'Зарегистрироваться',
-                  doctor_event_register_path(@doctor, event),
-                  class: "btn btn-sm btn-success" ,
-                  method: :post
+      = render "available_events_calendar", doctor: @doctor
+
+      / table.table
+      /   thead
+      /     tr
+      /       th id
+      /       th Лого
+      /       th Название
+      /       th Статус
+      /       th Действия
+      /   tbody
+      /     - @doctor.events_available.each do |event|
+      /       tr
+      /         td
+      /           = event.id
+      /         td
+      /           = image_tag event.logo.url(:thumb)
+      /         td
+      /           = link_to event.title, event
+      /         td
+      /           span.badge.badge-default
+      /             | Доступно для регистрации
+      /         td
+      /           = link_to 'Зарегистрироваться',
+      /             doctor_event_register_path(@doctor, event),
+      /             class: "btn btn-sm btn-success" ,
+      /             method: :post
 
     #profile-doctor__events.tab-pane.fade
       / h2 Мои мероприятия

@@ -24,4 +24,11 @@ class Event < ApplicationRecord
     where('start < ? AND finish > ?', Time.now, Time.now)
   }
 
+  def start_time
+    self.start
+  end
+
+  def end_time
+    self.finish
+  end
 end
