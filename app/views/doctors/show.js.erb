@@ -1,0 +1,4 @@
+<% js = escape_javascript(
+  render(partial: 'available_events_calendar', locals: { doctor: @doctor })
+) %>
+$("#profile-available__events").html("<%= js %>");

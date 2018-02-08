@@ -25,6 +25,7 @@ gem 'pg'
 gem 'slim-rails'
 gem 'rqrcode'
 gem 'composite_primary_keys'
+gem "simple_calendar", "~> 2.0"
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'

@@ -1,0 +1,13 @@
+= month_calendar events: @doctor.events_available do |date, events|
+  = date
+  - events.each do |event|
+    .event-card
+      / = event.id
+      / = image_tag event.logo.url(:thumb)
+      = link_to event.title, event, class: "event-link"
+      / span.badge.badge-default
+      /   | Доступно для регистрации
+      = link_to 'Зарегистрироваться',
+        doctor_event_register_path(@doctor, event),
+        class: "btn btn-sm btn-success event-register" ,
+        method: :post
