@@ -1,91 +1,95 @@
-h1 Все мероприятия
-
-table
-  thead
-    tr      
-      th Название 
-      th Время начала
-      th Время окончания
-      th
-      th
-      th
-
-  tbody
-    - @all_events.each do |event|
-      tr
-        td = event.title
-        td = event.start
-        td = event.finish
-        td = link_to 'Show', event
-        td = link_to 'Edit', edit_event_path(event)
-        td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
-
-h1 Идущие мероприятия
-
-table
-  thead
-    tr      
-      th Название 
-      th Время начала
-      th Время окончания
-      th
-      th
-      th
-
-  tbody
-    - @current_events.each do |event|
-      tr
-        td = event.title
-        td = event.start
-        td = event.finish
-        td = link_to 'Show', event
-        td = link_to 'Edit', edit_event_path(event)
-        td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
-
-h1 Запланированные мероприятия
-table
-  thead
-    tr      
-      th Название 
-      th Время начала
-      th Время окончания
-      th
-      th
-      th
-
-  tbody
-    - @upcoming_events.each do |event|
-      tr
-        td = event.title
-        td = event.start
-        td = event.finish
-        td = link_to 'Show', event
-        td = link_to 'Edit', edit_event_path(event)
-        td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
-
-
-h1 Архив мероприятий
-table
-  thead
-    tr      
-      th Название 
-      th Время начала
-      th Время окончания
-      th
-      th
-      th
-
-  tbody
-    - @archive_events.each do |event|
-      tr
-        td = event.title
-        td = event.start
-        td = event.finish
-        td = link_to 'Show', event
-        td = link_to 'Edit', edit_event_path(event)
-        td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
-
+= link_to 'Создать мероприятие', new_event_path, class: 'btn btn-primary'
+=< link_to 'Статистика', org_stats_path, class: 'btn'
 br
+br
+.events
+  ul#pills-tab.nav.nav-pills role="tablist"
+    li.nav-item.col-3
+      a#pills-home-tab.nav-link.active aria-controls="pills-doctor" aria-selected="true" data-toggle="pill" href="#pills-doctor" role="tab" Все мероприятия
+    li.nav-item.col-3
+      a#pills-profile-tab.nav-link aria-controls="pills-organizer" aria-selected="false" data-toggle="pill" href="#pills-organizer" role="tab" Идущие мероприятия
+    li.nav-item.col-3
+      a#pills-dsasadsad-tab.nav-link aria-controls="pills-dsasadsad" aria-selected="false" data-toggle="pill" href="#pills-dsasadsad" role="tab" Запланированные мероприятия
+    li.nav-item.col-3
+      a#pills-dfdsdasd-tab.nav-link aria-controls="pills-dfdsdasd" aria-selected="false" data-toggle="pill" href="#pills-dfdsdasd" role="tab" Архив мероприятий
+  #pills-tabContent.tab-content.mb-3
+    #pills-doctor.tab-pane.fade.show.active aria-labelledby="pills-doctor-tab" role="tabpanel"
+      table.table
+        thead
+          tr
+            th Название
+            th Время начала
+            th Время окончания
+            th
+            th
+            th
 
-= link_to 'New Event', new_event_path
+        tbody
+          - @all_events.each do |event|
+            tr
+              td = event.title
+              td = event.start
+              td = event.finish
+              td = link_to 'Show', event
+              td = link_to 'Edit', edit_event_path(event)
+              td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+    #pills-organizer.tab-pane.fade aria-labelledby="pills-organizer-tab" role="tabpanel"
+      table.table
+        thead
+          tr
+            th Название
+            th Время начала
+            th Время окончания
+            th
+            th
+            th
 
+        tbody
+          - @current_events.each do |event|
+            tr
+              td = event.title
+              td = event.start
+              td = event.finish
+              td = link_to 'Show', event
+              td = link_to 'Edit', edit_event_path(event)
+              td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+    #pills-dsasadsad.tab-pane.fade aria-labelledby="pills-dsasadsad-tab" role="tabpanel"
+      table.table
+        thead
+          tr
+            th Название
+            th Время начала
+            th Время окончания
+            th
+            th
+            th
+
+        tbody
+          - @upcoming_events.each do |event|
+            tr
+              td = event.title
+              td = event.start
+              td = event.finish
+              td = link_to 'Show', event
+              td = link_to 'Edit', edit_event_path(event)
+              td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+    #pills-dfdsdasd.tab-pane.fade aria-labelledby="pills-dfdsdasd-tab" role="tabpanel"
+      table.table
+        thead
+          tr
+            th Название
+            th Время начала
+            th Время окончания
+            th
+            th
+            th
+
+        tbody
+          - @archive_events.each do |event|
+            tr
+              td = event.title
+              td = event.start
+              td = event.finish
+              td = link_to 'Show', event
+              td = link_to 'Edit', edit_event_path(event)
+              td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
