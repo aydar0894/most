@@ -1,0 +1,34 @@
+h1 Статистика по прошедшим мероприятиям
+
+
+| Общее количество зарегистрированных на мероприятия пользователей за все время:
+br
+= @total_regs
+br
+| Общее количество участников мероприятия за все время:
+br
+= @total_parts
+br
+| Процент посещения ваших мероприятий:
+br
+= @participating_percentage
+
+table
+  thead
+    tr      
+      th Название 
+      th Время начала
+      th Время окончания
+      th Количество зарегистрированных пользователей
+      th Количество пользователей, посетивших мероприятие
+      th
+
+  tbody
+    - @archive_events.each do |event|
+      tr
+        td = event.title
+        td = event.start
+        td = event.finish
+        td = event.reggistrations_count
+        td = event.participants_count        
+        td = link_to 'Show', event

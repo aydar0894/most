@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
   		return redirect_to root_path if !current_user or !current_user.organizer?
   	end
 
+    def only_admin_or_organizer
+      return redirect_to root_path if !current_user or !current_user.organizer? or !current_user.admin?
+    end
+
   	def only_user
   		return redirect_to root_path if !current_user
   	end
