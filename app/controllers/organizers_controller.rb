@@ -11,14 +11,14 @@ class OrganizersController < ApplicationController
 
   def my_events
     @all_events = Event.where(organizer_id: Organizer.find_by(user_id: current_user.id).id)
-    current_date = Date.today
+    current_date = DateTime.current
     @current_events = @all_events.where('start <= ? AND finish >= ?', current_date, current_date)
     @upcoming_events = @all_events.where('start >= ?', current_date)
     @archive_events = @all_events.where('finish <= ?', current_date)
   end
 
   def statistics
-    current_date = Date.today
+    current_date = DateTime.current
     @all_events = Event.where(organizer_id: Organizer.find_by(user_id: current_user.id).id)
     @archive_events = @all_events.where('finish <= ?', current_date)
     @participating_percentage = 0

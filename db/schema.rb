@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180208020425) do
+ActiveRecord::Schema.define(version: 20180208031442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 20180208020425) do
     t.bigint "event_id"
     t.bigint "doctor_id"
     t.integer "status"
+    t.datetime "last_in", default: "2018-01-01 00:00:00"
+    t.datetime "last_out", default: "2018-01-01 00:00:00"
+    t.float "event_time", default: 0.0
     t.index ["doctor_id"], name: "index_event_doctors_on_doctor_id"
     t.index ["event_id"], name: "index_event_doctors_on_event_id"
   end
