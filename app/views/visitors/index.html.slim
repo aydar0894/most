@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 = render './layouts/nav_links_for_auth'
 
 - if user_signed_in?
@@ -13,3 +14,53 @@
 
 h3
   | Welcome
+=======
+section#top-page
+
+section#description.bg-main
+  .container
+    p.title
+      | МОСТ - система электронного сопровождения интерактивных мероприятий, аккредитованных в системе "Непрерывного Медицинского и Фармацевтического Образования"
+
+section#features
+
+section.callback.bg-main
+  .container
+    p.title.big
+      | Опубликовать событие
+    / p
+      / | Закажите обратный звонок:
+      / input type=("text") placeholder=("Введите Ваш телефон")
+
+section#use-it
+  .container.text-center
+    p.title
+      | Воспользуйтесь системой электронного сопровождения МОСТ.
+
+section.callback.bg-main
+  .container
+    p.title.big
+      | Опубликовать событие
+
+section#socials.row.mx-0
+  .subscribe.col-6.px-0
+    | Подписаться на эту страницу
+    = link_to '#', class: 'social-link'
+      = image_tag 'socials/twitter', class: 'social-icon'
+    = link_to '#', class: 'social-link'
+      = image_tag 'socials/linkedin', class: 'social-icon'
+    = link_to '#', class: 'social-link'
+      = image_tag 'socials/youtube', class: 'social-icon'
+    = link_to '#', class: 'social-link'
+      = image_tag 'socials/facebook', class: 'social-icon'
+  .share.col-6.text-right.px-0
+    | Поделиться этой страницей
+    = link_to '#', class: 'social-link'
+      = image_tag 'socials/twitter', class: 'social-icon'
+    = link_to '#', class: 'social-link'
+      = image_tag 'socials/linkedin', class: 'social-icon'
+    = link_to '#', class: 'social-link'
+      = image_tag 'socials/youtube', class: 'social-icon'
+    = link_to '#', class: 'social-link'
+      = image_tag 'socials/facebook', class: 'social-icon'
+>>>>>>> development

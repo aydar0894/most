@@ -107,6 +107,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    composite_primary_keys (10.0.2)
+      activerecord (~> 5.1.0, >= 5.1.4)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
     datetime_picker_rails (0.0.7)
@@ -177,7 +179,7 @@ GEM
     nokogiri (1.8.1-x64-mingw32)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
-    paperclip (5.0.0)
+    paperclip (5.2.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       cocaine (~> 0.5.5)
@@ -328,6 +330,7 @@ DEPENDENCIES
   capistrano-rvm (~> 0.1.1)
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  composite_primary_keys
   devise
   devise-i18n
   high_voltage
@@ -335,7 +338,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   listen (>= 3.0.5, < 3.2)
-  paperclip (~> 5.0.0)
+  paperclip (~> 5.2.1)
   pg
   pry-rails
   pry-rescue

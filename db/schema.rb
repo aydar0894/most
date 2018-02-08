@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171225001511) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20180208031442) do
+=======
+ActiveRecord::Schema.define(version: 20180208023811) do
+>>>>>>> feat_doctor_event_changes
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,13 +42,23 @@ ActiveRecord::Schema.define(version: 20171225001511) do
     t.bigint "event_id"
     t.bigint "doctor_id"
     t.integer "status"
+    t.datetime "last_in", default: "2018-01-01 00:00:00"
+    t.datetime "last_out", default: "2018-01-01 00:00:00"
+    t.float "event_time", default: 0.0
+    t.binary "qrcode"
+    t.string "qrcode_file_name"
+    t.string "qrcode_content_type"
+    t.integer "qrcode_file_size"
+    t.datetime "qrcode_updated_at"
     t.index ["doctor_id"], name: "index_event_doctors_on_doctor_id"
+    t.index ["event_id", "doctor_id"], name: "index_event_doctors_on_event_id_and_doctor_id", unique: true
     t.index ["event_id"], name: "index_event_doctors_on_event_id"
   end
 
   create_table "event_operators", force: :cascade do |t|
     t.bigint "event_id"
     t.bigint "operator_id"
+    t.index ["event_id", "operator_id"], name: "index_event_operators_on_event_id_and_operator_id", unique: true
     t.index ["event_id"], name: "index_event_operators_on_event_id"
     t.index ["operator_id"], name: "index_event_operators_on_operator_id"
   end
@@ -64,6 +78,11 @@ ActiveRecord::Schema.define(version: 20171225001511) do
     t.datetime "finish"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "reggistrations_count", default: 0
+    t.integer "participants_count", default: 0
+    t.text "location"
+    t.text "description"
+    t.integer "max_participants", default: 0
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
   end
 

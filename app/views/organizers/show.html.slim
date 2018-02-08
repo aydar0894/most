@@ -11,22 +11,3 @@ p
 '|
 =< link_to 'Back', organizers_path
 
-= link_to 'Создать новое событие',
-  new_organizer_event_path(@organizer),
-  class: "btn btn-sm btn-success"
-
-h2 Events available
-table.table
-  thead
-    tr
-      th id
-      th Название
-     
-  tbody
-    - @events_available&.each do |event|
-      tr
-        td
-          = event.id
-        td
-          = link_to event.title, event
-   
