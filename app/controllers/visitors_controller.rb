@@ -1,5 +1,6 @@
 class VisitorsController < ApplicationController
-  # def index
-  #   byebug
-  # end
+
+  def index
+    @navigation_page = :root
+  end
 end

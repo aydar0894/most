@@ -1,0 +1,37 @@
+@import "utilities/variables";
+
+nav.navbar {
+  background-color: $primary-color;
+  border-bottom: #0072b7;
+
+  .navbar-brand { color: #fff; padding-top: 0px; }
+  .nav-item {
+    .nav-link {
+      color: rgba(255, 255, 255, 0.5);
+      &:hover { color: rgba(255, 255, 255, 0.75); }
+    }
+    &.active {
+      .nav-link { color: #fff; }
+    }
+  }
+}
+
+.btn {
+  background-color: #f0f0f0;
+  border: 1px solid #f0f0f0;
+  color: #000;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  font-size: 12px;
+  font-weight: 600;
+
+  &.btn-primary { background-color: $primary-color; border-color: #158CBA; color: #fff; }
+  &:hover {
+    background-color: #dddddd;
+    border-color: #d7d6d6;
+    color: #000;
+    cursor: pointer;
+
+    &.btn-primary { background-color: #117298; border-color: #106a8c; color: #fff; }
+  }
+}

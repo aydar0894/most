@@ -6,4 +6,5 @@ class Event < ApplicationRecord
 
   has_many :event_operators
   has_many :operators, through: :event_operators
+
 end

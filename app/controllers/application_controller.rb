@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  helper_method :nav_item_active
+
+  def nav_item_active(current, need)
+    return 'active' if current == need
+    return ''
+  end
 
   private
   	def only_doctor
@@ -17,4 +23,5 @@ class ApplicationController < ActionController::Base
   	def only_user
   		return redirect_to root_path if !current_user
   	end
+
 end

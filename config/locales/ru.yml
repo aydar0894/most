@@ -1,1 +1,16 @@
 ru:
+  helpers:
+    label:
+      user:
+        email: 'Email'
+        password: 'Пароль'
+      "user[doctor]": &doctor
+        first_name: 'Имя'
+        last_name: 'Фамилия'
+        middle_name: 'Отчество'
+      "user[organizer]": &organizer
+        company_name: 'Название организации'
+  activerecord:
+    attributes:
+      doctor: *doctor
+      organizer: *organizer
