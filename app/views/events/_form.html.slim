@@ -13,6 +13,12 @@
     = f.label :finish, 'Конец', class: 'required'
     br
     = f.datetime_select :finish, class: 'form-control'
+  .form-group
+    = f.label :logo
+    = f.file_field :logo,class: 'form-control'
+  .form-group
+    = f.label :max_participants, class: 'required'
+    = f.number_field :max_participants,class: 'form-control'
 
   .mb-5
 

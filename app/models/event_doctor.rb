@@ -28,6 +28,7 @@ class EventDoctor < ApplicationRecord
     file = File.open(t)
     self.qrcode = file
     file.close
+    File.delete(t)
     self.save
   end
 end

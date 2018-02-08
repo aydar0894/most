@@ -71,7 +71,8 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.find(params[:doctor_id])
     @doctor_event = @doctor.event_doctors.build(:status => 0, :event_id => params[:event_id])
     @event = @doctor_event.event
-    @event.update(reggistrations_count: @event.reggistrations_count + 1)
+    @event.reggistrations_count += 1
+    @event.save
     if @doctor_event.save
       respond_to do |format|
         format.html { redirect_to doctor_event_path(@doctor, @event), notice: 'Вы зарегистрировались на мероприятие.' }
@@ -88,10 +89,9 @@ class DoctorsController < ApplicationController
   # DELETE /doctors/1/events/1
   def unregister
     @doctor = Doctor.find(params[:doctor_id])
-    @doctor_event = @doctor.event_doctors.find(:event_id => params[:event_id])
-    @doctor_event.destroy
     @event = Event.find(params[:event_id])
-    @event.update(registrations_count: @event.registrations_count - 1)
+    @event.reggistrations_count -= 1
+    @event.save
     @doctor_event = @doctor.event_doctors.where(event_id: params[:event_id]).first.destroy
     respond_to do |format|
       format.html { redirect_to doctor_events_path(@doctor), notice: 'Вы отказались от посещения мероприятие.' }

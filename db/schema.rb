@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20180208031442) do
-=======
-ActiveRecord::Schema.define(version: 20180208023811) do
->>>>>>> feat_doctor_event_changes
+ActiveRecord::Schema.define(version: 20180208121808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +31,10 @@ ActiveRecord::Schema.define(version: 20180208023811) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["user_id"], name: "index_doctors_on_user_id"
   end
 
@@ -42,14 +42,14 @@ ActiveRecord::Schema.define(version: 20180208023811) do
     t.bigint "event_id"
     t.bigint "doctor_id"
     t.integer "status"
-    t.datetime "last_in", default: "2018-01-01 00:00:00"
-    t.datetime "last_out", default: "2018-01-01 00:00:00"
-    t.float "event_time", default: 0.0
     t.binary "qrcode"
     t.string "qrcode_file_name"
     t.string "qrcode_content_type"
     t.integer "qrcode_file_size"
     t.datetime "qrcode_updated_at"
+    t.datetime "last_in", default: "2018-01-01 00:00:00"
+    t.datetime "last_out", default: "2018-01-01 00:00:00"
+    t.float "event_time", default: 0.0
     t.index ["doctor_id"], name: "index_event_doctors_on_doctor_id"
     t.index ["event_id", "doctor_id"], name: "index_event_doctors_on_event_id_and_doctor_id", unique: true
     t.index ["event_id"], name: "index_event_doctors_on_event_id"
@@ -83,6 +83,10 @@ ActiveRecord::Schema.define(version: 20180208023811) do
     t.text "location"
     t.text "description"
     t.integer "max_participants", default: 0
+    t.string "logo_file_name"
+    t.string "logo_content_type"
+    t.integer "logo_file_size"
+    t.datetime "logo_updated_at"
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
   end
 
