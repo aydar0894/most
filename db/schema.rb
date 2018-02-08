@@ -42,14 +42,13 @@ ActiveRecord::Schema.define(version: 20180208121808) do
     t.bigint "event_id"
     t.bigint "doctor_id"
     t.integer "status"
-    t.binary "qrcode"
+    t.datetime "last_in", default: "2018-01-01 00:00:00"
+    t.datetime "last_out", default: "2018-01-01 00:00:00"
+    t.float "event_time", default: 0.0
     t.string "qrcode_file_name"
     t.string "qrcode_content_type"
     t.integer "qrcode_file_size"
     t.datetime "qrcode_updated_at"
-    t.datetime "last_in", default: "2018-01-01 00:00:00"
-    t.datetime "last_out", default: "2018-01-01 00:00:00"
-    t.float "event_time", default: 0.0
     t.index ["doctor_id"], name: "index_event_doctors_on_doctor_id"
     t.index ["event_id", "doctor_id"], name: "index_event_doctors_on_event_id_and_doctor_id", unique: true
     t.index ["event_id"], name: "index_event_doctors_on_event_id"

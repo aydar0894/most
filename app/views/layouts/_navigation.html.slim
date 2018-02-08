@@ -2,7 +2,11 @@ nav.navbar.navbar-expand-md.navbar-landing
   .container-fluid.align-items-start
     = link_to root_path, class: 'navbar-brand '
       = image_tag 'logo2x_landing.png'
-    .user-type | &nbsp&nbsp&nbspОрганизатор мероприятий
+    .user-type
+      - unless page_type_name.blank?
+        | |
+        span.ml-3
+          = page_type_name
     button.navbar-toggler.d-lg-none aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarsExampleDefault" data-toggle="collapse" type="button"
       span.navbar-toggler-icon
     #navbarsExampleDefault.collapse.navbar-collapse
@@ -19,3 +23,7 @@ nav.navbar.navbar-expand-md.navbar-landing
             = link_to profile_path, class: 'nav-link'
               = image_tag 'user_auth.png', class: 'user_auth_icon'
               = current_user.name
+          li.nav-item
+            = link_to destroy_user_session_path, method: :delete, class: 'nav-link'
+              | |
+              span.ml-3 Выйти

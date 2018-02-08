@@ -17,4 +17,8 @@ nav.navbar.navbar-expand-md.navbar-landing
             - profile_path = (current_user.organizer? ? org_events_path : new_user_session_path)
             = link_to profile_path, class: 'nav-link'
               = image_tag 'user_auth.png', class: 'user_auth_icon'
-              | Профиль
+              = current_user.name
+          li.nav-item
+            = link_to destroy_user_session_path, method: :delete, class: 'nav-link'
+              | |
+              span.ml-3 Выйти

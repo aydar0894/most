@@ -1,19 +1,23 @@
 = link_to 'Создать мероприятие', new_event_path, class: 'btn btn-primary'
 =< link_to 'Статистика', org_stats_path, class: 'btn'
-br
-br
-.events
-  ul#pills-tab.nav.nav-pills role="tablist"
-    li.nav-item.col-3
-      a#pills-home-tab.nav-link.active aria-controls="pills-doctor" aria-selected="true" data-toggle="pill" href="#pills-doctor" role="tab" Все мероприятия
-    li.nav-item.col-3
-      a#pills-profile-tab.nav-link aria-controls="pills-organizer" aria-selected="false" data-toggle="pill" href="#pills-organizer" role="tab" Идущие мероприятия
-    li.nav-item.col-3
-      a#pills-dsasadsad-tab.nav-link aria-controls="pills-dsasadsad" aria-selected="false" data-toggle="pill" href="#pills-dsasadsad" role="tab" Запланированные мероприятия
-    li.nav-item.col-3
-      a#pills-dfdsdasd-tab.nav-link aria-controls="pills-dfdsdasd" aria-selected="false" data-toggle="pill" href="#pills-dfdsdasd" role="tab" Архив мероприятий
-  #pills-tabContent.tab-content.mb-3
-    #pills-doctor.tab-pane.fade.show.active aria-labelledby="pills-doctor-tab" role="tabpanel"
+
+#event-tabs.mt-3
+  ul.nav.nav-tabs role="tablist"
+    li.nav-item
+      a.nav-link.active href='#all-events'  data-toggle="tab"
+        | Все мероприятия
+    li.nav-item
+      a.nav-link href='#ongoing-events' data-toggle="tab"
+        | Идущие мероприятия
+    li.nav-item
+      a.nav-link href='#scheduled-events'  data-toggle="tab"
+        | Запланированные мероприятия
+    li.nav-item
+      a.nav-link href='#archive-events'  data-toggle="tab"
+        | Архив мероприятий
+
+  .tab-content
+    #all-events.tab-pane.fade.show.active
       table.table
         thead
           tr
@@ -33,7 +37,7 @@ br
               td = link_to 'Show', event
               td = link_to 'Edit', edit_event_path(event)
               td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
-    #pills-organizer.tab-pane.fade aria-labelledby="pills-organizer-tab" role="tabpanel"
+    #ongoing-events.tab-pane.fade
       table.table
         thead
           tr
@@ -53,7 +57,7 @@ br
               td = link_to 'Show', event
               td = link_to 'Edit', edit_event_path(event)
               td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
-    #pills-dsasadsad.tab-pane.fade aria-labelledby="pills-dsasadsad-tab" role="tabpanel"
+    #scheduled-events.tab-pane.fade
       table.table
         thead
           tr
@@ -73,7 +77,7 @@ br
               td = link_to 'Show', event
               td = link_to 'Edit', edit_event_path(event)
               td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
-    #pills-dfdsdasd.tab-pane.fade aria-labelledby="pills-dfdsdasd-tab" role="tabpanel"
+    #archive-events.tab-pane.fade
       table.table
         thead
           tr

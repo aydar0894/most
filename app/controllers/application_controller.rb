@@ -1,10 +1,24 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :nav_item_active
+  helper_method :page_type_name
 
   def nav_item_active(current, need)
     return 'active' if current == need
     return ''
+  end
+
+  def page_type_name
+    case current_user&.role
+    when "doctor"
+      return "Доктор"
+    when "organizer"
+      return "Организатор мероприятий"
+    when "operator"
+      return "Оператор"
+    else
+      return ''
+    end
   end
 
   private
