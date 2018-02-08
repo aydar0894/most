@@ -40,7 +40,7 @@ class OrganizersController < ApplicationController
   # GET /organizers/1
   # GET /organizers/1.json
   # def show
-    
+
   # end
 
   # GET /organizers/new

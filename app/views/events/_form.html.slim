@@ -1,12 +1,26 @@
-= form_for @event do |f|  
-  
-  .field
-    = f.label :title
-    = f.text_area :title
-  .field
-    = f.label :start
-    = f.datetime_select :start
-  .field
-    = f.label :finish
-    = f.datetime_select :finish
-  .actions = f.submit
+/ .progress
+/   .progress-bar.progress-bar-striped.bg-info aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" role="progressbar" style=("width: 0%")
+
+.col-8.mx-auto.mt-5
+  .form-group
+    = f.label :title, 'Название', class: 'required'
+    = f.text_area :title, class: 'form-control', placeholder: 'Введите название'
+  .form-group
+    = f.label :start, 'Начало', class: 'required'
+    br
+    = f.datetime_select :start, class: 'form-control'
+  .form-group
+    = f.label :finish, 'Конец', class: 'required'
+    br
+    = f.datetime_select :finish, class: 'form-control'
+
+  .mb-5
+
+  .info.mb-3
+    | Поля помеченные
+    span.red.mx-1 *
+    | обязательны для заполнения
+
+  = f.submit "#{@event&.id.nil? ? 'Создать' : 'Сохранить'}", :class => 'btn btn-primary'
+  = link_to 'Назад', org_events_path, class: 'ml-2 btn'
+  .clearfix
