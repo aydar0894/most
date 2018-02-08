@@ -1,0 +1,91 @@
+h1 Все мероприятия
+
+table
+  thead
+    tr      
+      th Название 
+      th Время начала
+      th Время окончания
+      th
+      th
+      th
+
+  tbody
+    - @all_events.each do |event|
+      tr
+        td = event.title
+        td = event.start
+        td = event.finish
+        td = link_to 'Show', event
+        td = link_to 'Edit', edit_event_path(event)
+        td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+
+h1 Идущие мероприятия
+
+table
+  thead
+    tr      
+      th Название 
+      th Время начала
+      th Время окончания
+      th
+      th
+      th
+
+  tbody
+    - @current_events.each do |event|
+      tr
+        td = event.title
+        td = event.start
+        td = event.finish
+        td = link_to 'Show', event
+        td = link_to 'Edit', edit_event_path(event)
+        td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+
+h1 Запланированные мероприятия
+table
+  thead
+    tr      
+      th Название 
+      th Время начала
+      th Время окончания
+      th
+      th
+      th
+
+  tbody
+    - @upcoming_events.each do |event|
+      tr
+        td = event.title
+        td = event.start
+        td = event.finish
+        td = link_to 'Show', event
+        td = link_to 'Edit', edit_event_path(event)
+        td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+
+
+h1 Архив мероприятий
+table
+  thead
+    tr      
+      th Название 
+      th Время начала
+      th Время окончания
+      th
+      th
+      th
+
+  tbody
+    - @archive_events.each do |event|
+      tr
+        td = event.title
+        td = event.start
+        td = event.finish
+        td = link_to 'Show', event
+        td = link_to 'Edit', edit_event_path(event)
+        td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Event', new_event_path
+

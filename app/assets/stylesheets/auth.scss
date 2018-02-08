@@ -1,0 +1,59 @@
+@import "utilities/variables";
+
+// .role-radio {
+//   display: inline-block !important;
+// }
+// .rale-radio-label {
+//   // float: left;
+//   display: inline-block !important;
+//   margin-left: 2px;
+//   margin-right: 5px;
+// }
+//
+// #reg-form-organized {
+//   display: none;
+// }
+//
+// #reg-radio-organizer:checked ~ #reg-form #reg-form-organized {
+//   display: block;
+// }
+//
+// #reg-radio-organizer:checked ~ #reg-form #reg-form-doctor {
+//   display: none;
+// }
+
+.authform {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.nav-pills {
+  text-align: center;
+
+  .nav-item {
+    padding-left: 0;
+    padding-right: 0;
+
+    &:first-child .nav-link { border-left: 1px solid $primary-color; border-top-right-radius: 0; }
+    &:last-child .nav-link { border-right: 1px solid $primary-color; border-top-left-radius: 0; }
+
+    .nav-link {
+      border-top: 1px solid $primary-color;
+      border-radius: 0.25rem 0.25rem 0 0;
+      background-color: #f4f4f4;
+      &.active {
+        background-color: $primary-color;
+      }
+    }
+  }
+}
+
+.tab-content {
+  border: 1px solid $primary-color;
+  border-top: none;
+  border-radius: 0 0 0.25rem 0.25rem;
+  padding: 10px;
+}

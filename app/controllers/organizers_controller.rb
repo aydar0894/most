@@ -1,7 +1,7 @@
 class OrganizersController < ApplicationController
-  before_action :set_organizer, only: [:show, :edit, :update, :destroy]
+  before_action :set_organizer, only: [:edit, :update]
   before_action :only_admin, only: [:index, :new, :create, :destroy]
-  before_action :only_organizer, only: [:show, :edit, :update]
+  before_action :only_organizer, only: [:show, :edit, :update, :my_events, :statistics]
 
   # GET /organizers
   # GET /organizers.json
@@ -9,11 +9,39 @@ class OrganizersController < ApplicationController
     @organizers = Organizer.all
   end
 
+  def my_events
+    @all_events = Event.where(organizer_id: Organizer.find_by(user_id: current_user.id).id)
+    current_date = Date.today
+    @current_events = @all_events.where('start <= ? AND finish >= ?', current_date, current_date)
+    @upcoming_events = @all_events.where('start >= ?', current_date)
+    @archive_events = @all_events.where('finish <= ?', current_date)
+  end
+
+  def statistics
+    current_date = Date.today
+    @all_events = Event.where(organizer_id: Organizer.find_by(user_id: current_user.id).id)
+    @archive_events = @all_events.where('finish <= ?', current_date)
+    @participating_percentage = 0
+    @total_regs = 0
+    @total_parts = 0
+    @archive_events.each do |event|
+      @total_regs += event.reggistrations_count
+      @total_parts += event.participants_count
+    end
+
+    if @total_parts!= 0
+      @participating_percentage = @total_regs/@total_parts * 100
+    else
+      @participating_percentage = 100
+    end
+
+  end
+
   # GET /organizers/1
   # GET /organizers/1.json
-  def show
-    @events_available = Event.where(organizer_id: Organizer.where(user_id: current_user.id))
-  end
+  # def show
+    
+  # end
 
   # GET /organizers/new
   def new

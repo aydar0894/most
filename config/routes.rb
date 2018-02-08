@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   resources :events
-  resources :organizers do
-    resources :events do
-    end
-  end
+  resources :organizers
   resources :operators
   resources :doctors do
     resources :events, only: [:index, :show, :register, :unfollow] do
@@ -11,6 +8,10 @@ Rails.application.routes.draw do
       match 'unregister' => 'doctors#unregister', via: :delete, as: :unregister
     end
   end
+
+  get 'organizer/events', to: 'organizers#my_events', as: :org_events
+  get 'organizer/statistics', to: 'organizers#statistics', as: :org_stats
+
   namespace :admin do
     resources :users
     root to: "users#index"

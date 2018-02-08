@@ -1,0 +1,21 @@
+.container
+  .authform
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      h3.text-center.my-2.mb-3
+        | Вход
+
+      .col-8.mx-auto.mt-5
+        = devise_error_messages!
+        .form-group
+          = f.label :email, class: 'required'
+          = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Введите email'
+        .form-group
+          = f.label :password, class: 'required'
+          = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Введите пароль'
+        .field
+          = f.check_box :remember_me, class: 'mr-1'
+          = f.label :remember_me, "Запомнить меня"
+        .actions
+          = f.submit "Войти", class: 'btn btn-primary'
+
+= render "users/shared/links"

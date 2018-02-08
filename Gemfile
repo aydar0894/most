@@ -23,6 +23,7 @@ gem 'high_voltage'
 gem 'jquery-rails'
 gem 'pg'
 gem 'slim-rails'
+gem 'rqrcode'
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'

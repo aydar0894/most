@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171225001511) do
+ActiveRecord::Schema.define(version: 20180208020425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,11 @@ ActiveRecord::Schema.define(version: 20171225001511) do
     t.datetime "finish"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "reggistrations_count", default: 0
+    t.integer "participants_count", default: 0
+    t.text "location"
+    t.text "description"
+    t.integer "max_participants", default: 0
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
   end
 

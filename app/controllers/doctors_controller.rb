@@ -3,14 +3,12 @@ class DoctorsController < ApplicationController
   before_action :only_doctor, only: [:show, :edit,  :update]
   before_action :only_admin, only: [:index, :new, :create, :destroy]
 
-  # GET /doctors
-  # GET /doctors.json
+
   def index
     @doctors = Doctor.all
   end
 
-  # GET /doctors/1
-  # GET /doctors/1.json
+
   def show
     @events_available = Event.all
   end
@@ -20,7 +18,7 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.new
   end
 
-  # GET /doctors/1/edit
+
   def edit
   end
 
@@ -30,8 +28,8 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.new(first_name: doctor_params[:first_name],
      last_name: doctor_params[:last_name],
      middle_name: doctor_params[:middle_name],
-     birth_date: doctor_params[:birth_date],
-     user_id: current_user.id)
+     user_id: current_user.id,
+     birth_date: doctor_params[:birth_date] )
 
     respond_to do |format|
       if @doctor.save

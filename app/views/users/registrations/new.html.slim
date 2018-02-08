@@ -1,35 +1,93 @@
-.authform
-  = form_for(@user, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f|
-    h3
-      | Регистрация
-    = devise_error_messages!    
-    .form-group
-      = f.label :email
-      = f.email_field :email, class: 'form-control'
-    .form-group
-      = f.label :password
-      = f.password_field :password, class: 'form-control'
-    .form-group
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation, class: 'form-control'
-    .form-group
-      = f.label :role
-      = f.select :role, User.roles.keys.map{ |r|  [r.humanize, r] }
+.container
+  .authform
+    = form_for(@user, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f|
+      h3.text-center.my-2.mb-3
+        | Регистрация
 
-    | Личная нформация
-    = f.fields_for :doctor do |doc|
-      .form-group
-        = doc.label :first_name
-        = doc.text_field :first_name, class: 'form-control'
-      .form-group
-        = doc.label :last_name
-        = doc.text_field :last_name, class: 'form-control'
-      .form-group
-        = doc.label :middle_name
-        = doc.text_field :middle_name, class: 'form-control'
-    | Информация об организации
-    = f.fields_for :organizer do |org|
-      .form-group
-        = org.label :company_name
-        = org.text_field :company_name, class: 'form-control'
-    = f.submit 'Sign up', :class => 'button right'
+      / .progress
+      /   .progress-bar.progress-bar-striped.bg-info aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" role="progressbar" style=("width: 0%")
+
+      .col-8.mx-auto.mt-5
+        = devise_error_messages!
+        .form-group
+          = f.label :email, class: 'required'
+          = f.email_field :email, class: 'form-control', placeholder: 'Введите email'
+        .form-group
+          = f.label :password, class: 'required'
+          = f.password_field :password, class: 'form-control', placeholder: 'Введите пароль'
+        .form-group
+          = f.label :password_confirmation, class: 'required'
+          = f.password_field :password_confirmation, class: 'form-control', placeholder: 'Введите подтверждение пароля'
+
+        .mb-5
+
+        / .form-group
+        /   = f.label :role, "Вы", class: 'required'
+        /   = f.select :role, User.registration_roles.map{ |name| [name.to_s.humanize, name] }
+
+
+        / input class="role-radio" type="radio" name="role" value="doctor" id="reg-radio-doctor" checked="checked"
+        / label class="rale-radio-label" for="reg-radio-doctor" Доктор
+
+        / input class="role-radio" type="radio" name="role" value="organizer" id="reg-radio-organizer"
+        / label class="rale-radio-label" for="reg-radio-organizer" Организатор
+
+        h6.text-center Регистрация в качестве:
+
+        ul#pills-tab.nav.nav-pills role="tablist"
+          li.nav-item.col-6
+            a#pills-home-tab.nav-link.active aria-controls="pills-doctor" aria-selected="true" data-toggle="pill" href="#pills-doctor" role="tab" Доктора
+          li.nav-item.col-6
+            a#pills-profile-tab.nav-link aria-controls="pills-organizer" aria-selected="false" data-toggle="pill" href="#pills-organizer" role="tab" Организатора
+        #pills-tabContent.tab-content.mb-3
+          #pills-doctor.tab-pane.fade.show.active aria-labelledby="pills-doctor-tab" role="tabpanel"
+            #reg-form-doctor
+              / h6.text-center Личная информация
+              = f.fields_for :doctor do |doc|
+                .form-group
+                  = doc.label :first_name, class: 'required'
+                  = doc.text_field :first_name, class: 'form-control', placeholder: 'Введите имя'
+                .form-group
+                  = doc.label :last_name, class: 'required'
+                  = doc.text_field :last_name, class: 'form-control', placeholder: 'Введите фамилия'
+                .form-group
+                  = doc.label :middle_name, class: 'required'
+                  = doc.text_field :middle_name, class: 'form-control', placeholder: 'Введите отчество'
+          #pills-organizer.tab-pane.fade aria-labelledby="pills-organizer-tab" role="tabpanel"
+            #reg-form-organized
+              / h6.text-center Информация об организации
+              = f.fields_for :organizer do |org|
+                .form-group
+                  = org.label :company_name, class: 'required'
+                  = org.text_field :company_name, class: 'form-control', placeholder: 'Введите название организации'
+
+
+
+        / #reg-form
+        /   #reg-form-doctor
+        /     h6.text-center Личная информация
+        /     = f.fields_for :doctor do |doc|
+        /       .form-group
+        /         = doc.label :first_name
+        /         = doc.text_field :first_name, class: 'form-control'
+        /       .form-group
+        /         = doc.label :last_name
+        /         = doc.text_field :last_name, class: 'form-control'
+        /       .form-group
+        /         = doc.label :middle_name
+        /         = doc.text_field :middle_name, class: 'form-control'
+        /
+        /   #reg-form-organized
+        /     h6.text-center Информация об организации
+        /     = f.fields_for :organizer do |org|
+        /       .form-group
+        /         = org.label :company_name
+        /         = org.text_field :company_name, class: 'form-control'
+
+        .info.mb-3
+          | Поля помеченные
+          span.red.mx-1 *
+          | обязательны для заполнения
+
+        = f.submit 'Зарегистрироваться', :class => 'btn btn-primary'
+        .clearfix
