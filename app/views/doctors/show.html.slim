@@ -21,7 +21,7 @@ p
 =< link_to 'Back', doctors_path
 
 
-h2 Events available
+h2 Все события
 table.table
   thead
     tr
@@ -36,15 +36,29 @@ table.table
         td
           = link_to event.title, event
         td
-          - unless @doctor.events.ids.include?(event.id)
-            span.badge.badge-default
-              | Доступно для регистрации
-            = link_to 'Зарегистрироваться',
-              doctor_event_register_path(@doctor, event),
-              class: "btn btn-sm btn-success" ,
-              method: :post
-          - else
-            span.badge.badge-success
-              | Вы зарегистрированы
-            .btn.btn-danger
-              | Отменить регистрацию
+          span.badge.badge-default
+            | Доступно для регистрации
+          = link_to 'Зарегистрироваться',
+            doctor_event_register_path(@doctor, event),
+            class: "btn btn-sm btn-success" ,
+            method: :post
+
+h2 Мои мероприятия
+table.table
+  thead
+    tr
+      th id
+      th Название
+      th Статус
+  tbody
+    - @doctor.events.each do |event|
+      tr
+        td
+          = event.id
+        td
+          = link_to event.title, event
+        td
+          span.badge.badge-success
+            | Вы зарегистрированы
+          .btn.btn-danger
+            | Отменить регистрацию
