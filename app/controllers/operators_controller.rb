@@ -1,6 +1,6 @@
 class OperatorsController < ApplicationController
   before_action :set_operator, only: [:show, :edit, :update, :destroy]
-
+  before_action :only_operator, only: [:api_authorize_event_doctor]
   # GET /operators
   # GET /operators.json
   def index
@@ -10,6 +10,28 @@ class OperatorsController < ApplicationController
   # GET /operators/1
   # GET /operators/1.json
   def show
+  end
+
+  def check_event_doctor_status
+    @event_doctor = EventDoctor.where(event_id: params[:event_id], doctor_id: params[:doctor_id])
+    return render json: @event_doctor.status
+  end
+
+  def api_authorize_event_doctor_in
+    event = Event.find(params[:event_id])
+    return render json: {"error" : "incorrect event"} if event.start > DateTime.current || event.finish <= DateTime.current
+    @event_doctor = EventDoctor.where(event_id: params[:event_id], doctor_id: params[:doctor_id])
+    return render json: {"error" : "user is not registered on this event"} if !@event_doctor
+    @event_doctor.update(last_in: DateTime.current, status: 1)
+  end
+
+  def api_authorize_event_doctor_out
+    event = Event.find(params[:event_id])
+    return render json: {"error" : "incorrect event"} if event.start > DateTime.current || event.finish <= DateTime.current
+    @event_doctor = EventDoctor.where(event_id: params[:event_id], doctor_id: params[:doctor_id])
+    return render json: {"error" : "user is not registered on this event"} if !@event_doctor
+    @event_doctor.update(last_out: DateTime.current, status: 0)
+    @event_doctor.update(event_time: @event_doctor.event_time + (@event_doctor.last_out - @event_doctor.last_in))  
   end
 
   # GET /operators/new
