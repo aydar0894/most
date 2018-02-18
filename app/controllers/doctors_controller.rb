@@ -108,8 +108,20 @@ class DoctorsController < ApplicationController
       @doctor = Doctor.find(params[:id])
     end
 
+    def check_phone doctor
+      phone = Phonelib.parse params[:phone]
+      if phone.valid?
+        doctor.phone = phone.to_s
+        doctor.save!
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def doctor_params
-      params.require(:doctor).permit(:first_name, :last_name, :middle_name, :birth_date, :event_id)
+      params.require(:doctor).permit(:first_name, 
+        :last_name, 
+        :middle_name,
+        :birth_date, 
+        :event_id)
     end
 end

@@ -2,6 +2,8 @@ class User < ApplicationRecord
 	enum role: [:user, :doctor, :organizer, :operator, :admin]
 	after_initialize :set_default_role, :if => :new_record?
 
+	validates :attribute, phone: { possible: true, allow_blank: false, types: [:mobile])
+
 	def set_default_role
 		self.role ||= :user
 	end
