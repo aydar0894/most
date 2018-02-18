@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :nav_item_active
   helper_method :page_type_name
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
 
   def nav_item_active(current, need)
     return 'active' if current == need
@@ -20,6 +22,13 @@ class ApplicationController < ActionController::Base
       return ''
     end
   end
+
+  protected
+    def configure_permitted_parameters
+      added_attrs = [:phone, :email, :password, :password_confirmation, :remember_me]
+      devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+      devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+    end
 
   private
   	def only_doctor
