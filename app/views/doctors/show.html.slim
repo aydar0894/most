@@ -1,6 +1,34 @@
 p#notice = notice
 
 #profile-tabs
+  .col-xl-5.col-lg-5.col-md-5.col-sm-8.col-9.bhoechie-tab-container
+    .col-xl-3.col-lg-3.col-md-3.col-sm-3.col-3.bhoechie-tab-menu
+      nav.flex-columns
+        a.list-group-item.active.text-center[href="#"]
+
+        h4.glyphicon.glyphicon-plane
+        br
+        | Flight 
+        a.list-group-item.text-center[href="#"]
+
+        h4.glyphicon.glyphicon-road
+        br
+        | Train 
+        a.list-group-item.text-center[href="#"]
+
+        h4.glyphicon.glyphicon-home
+        br
+        | Hotel 
+        a.list-group-item.text-center[href="#"]
+
+        h4.glyphicon.glyphicon-cutlery
+        br
+        | Restaurant 
+        a.list-group-item.text-center[href="#"]
+
+        h4.glyphicon.glyphicon-credit-card
+        br
+        | Credit Card 
   ul.nav.nav-tabs role="tablist"
     li.nav-item
       a.nav-link.active href='#profile-info'  data-toggle="tab"
@@ -14,8 +42,42 @@ p#notice = notice
     li.nav-item
       a.nav-link href='#profile-archive__events'  data-toggle="tab"
         | Архив посещенных мероприятий
-
-  .tab-content
+  .tab-content.col-xl-9.col-lg-9.col-md-9.col-sm-9.col-9.bhoechie-tab
+    .bhoechie-tab-content.active
+        center
+          h1.glyphicon.glyphicon-plane[style="font-size:14em;color:#55518a"]
+          h2[style="margin-top: 0;color:#55518a"]
+            | Cooming Soon
+          h3[style="margin-top: 0;color:#55518a"]
+            | Flight Reservation
+      .bhoechie-tab-content
+        center
+          h1.glyphicon.glyphicon-road[style="font-size:12em;color:#55518a"]
+          h2[style="margin-top: 0;color:#55518a"]
+            | Cooming Soon
+          h3[style="margin-top: 0;color:#55518a"]
+            | Train Reservation
+      .bhoechie-tab-content
+        center
+          h1.glyphicon.glyphicon-home[style="font-size:12em;color:#55518a"]
+          h2[style="margin-top: 0;color:#55518a"]
+            | Cooming Soon
+          h3[style="margin-top: 0;color:#55518a"]
+            | Hotel Directory
+      .bhoechie-tab-content
+        center
+          h1.glyphicon.glyphicon-cutlery[style="font-size:12em;color:#55518a"]
+          h2[style="margin-top: 0;color:#55518a"]
+            | Cooming Soon
+          h3[style="margin-top: 0;color:#55518a"]
+            | Restaurant Diirectory
+      .bhoechie-tab-content
+        center
+          h1.glyphicon.glyphicon-credit-card[style="font-size:12em;color:#55518a"]
+          h2[style="margin-top: 0;color:#55518a"]
+            | Cooming Soon
+          h3[style="margin-top: 0;color:#55518a"]
+            | Credit Card
     #profile-info.tab-pane.fade.show.active
       p
         strong Фото
@@ -29,32 +91,6 @@ p#notice = notice
       => link_to 'Редактировать профиль', edit_doctor_path(@doctor)
     #profile-available__events.tab-pane.fade
       = render "available_events_calendar", doctor: @doctor
-
-      / table.table
-      /   thead
-      /     tr
-      /       th id
-      /       th Лого
-      /       th Название
-      /       th Статус
-      /       th Действия
-      /   tbody
-      /     - @doctor.events_available.each do |event|
-      /       tr
-      /         td
-      /           = event.id
-      /         td
-      /           = image_tag event.logo.url(:thumb)
-      /         td
-      /           = link_to event.title, event
-      /         td
-      /           span.badge.badge-default
-      /             | Доступно для регистрации
-      /         td
-      /           = link_to 'Зарегистрироваться',
-      /             doctor_event_register_path(@doctor, event),
-      /             class: "btn btn-sm btn-success" ,
-      /             method: :post
 
     #profile-doctor__events.tab-pane.fade
       / h2 Мои мероприятия

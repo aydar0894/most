@@ -3,6 +3,8 @@ class User < ApplicationRecord
 	after_initialize :set_default_role, :if => :new_record?
 	before_destroy :destroy_profile
 
+	validates :attribute, phone: { possible: true, allow_blank: false, types: [:mobile])
+
 	def set_default_role
 		self.role ||= :user
 	end
