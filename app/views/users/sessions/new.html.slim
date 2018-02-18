@@ -6,10 +6,13 @@
 
       .col-8.mx-auto.mt-5
         = devise_error_messages!
+        / .form-group
+        /   = f.label :email, class: 'required'
+        /   = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Введите email'
         .form-group
-          = f.label :email, class: 'required'
+          = f.label :phone, class: 'required'
           = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Введите email'
-        .form-group
+        .form-group.d-none
           = f.label :password, class: 'required'
           = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Введите пароль'
         .field

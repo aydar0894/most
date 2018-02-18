@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 	enum role: [:user, :doctor, :organizer, :operator, :admin]
 	after_initialize :set_default_role, :if => :new_record?
+	before_destroy :destroy_profile
 
 	def set_default_role
 		self.role ||= :user
@@ -35,7 +36,7 @@ class User < ApplicationRecord
 		case self.role.to_sym
 		when :doctor
 			return Doctor.find_by(user_id: self.id)
-		when :orginzer
+		when :organizer
 			return Organizer.find_by(user_id: self.id)
 		when :operator
 			return Operator.find_by(user_id: self.id)
@@ -44,6 +45,10 @@ class User < ApplicationRecord
 		when :user
 			return self
 		end
+	end
+
+	def destroy_profile
+		self.profile&.destroy
 	end
 
 end
