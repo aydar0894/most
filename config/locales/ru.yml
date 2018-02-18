@@ -3,14 +3,24 @@ ru:
     label:
       user:
         email: 'Email'
+        login: 'Телефон/Email'
+        phone: 'Номер телефона'
         password: 'Пароль'
-      "user[doctor]": &doctor
+      "user[doctor]":
         first_name: 'Имя'
         last_name: 'Фамилия'
         middle_name: 'Отчество'
-      "user[organizer]": &organizer
+      "user[organizer]":
         company_name: 'Название организации'
   activerecord:
+    attributes:
+      user:
+        user:
+          email: 'Email'
+          login: 'Телефон/Email'
+          phone: 'Номер телефона'
+          password: 'Пароль'
+
     errors:
       messages:
         record_invalid: 'Возникли ошибки: %{errors}'
