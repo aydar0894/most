@@ -51,7 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def user_params
-    params.require(:user).permit(:password, :email, :role)
+    params.require(:user).permit(:password, :phone, :email, :role)
   end
 
   def doctor_params

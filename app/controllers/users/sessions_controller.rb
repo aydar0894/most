@@ -14,7 +14,7 @@ class Users::SessionsController < Devise::SessionsController
       #, status: 200
     else
       return render json: {user_exists: false}
-      #, status: 201
+      #, status: 204
     end
   end
 
