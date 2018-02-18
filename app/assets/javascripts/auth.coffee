@@ -1,3 +1,4 @@
+# Проверка на валидность телефона
 is_valid_phone = (phone) ->
   if (phone == undefined)
     return false;
@@ -6,6 +7,7 @@ is_valid_phone = (phone) ->
   if (pattern.test(phone))
     return true;
 
+# Переводит телефон в нужный формат - +79XXXXXXXXX. Убирает все ненужные знаки
 format_phone = (phone) ->
   if (phone == undefined)
     return '';
@@ -15,6 +17,7 @@ format_phone = (phone) ->
   phone = phone.replace(/(\(|\)|\.|\-)/g, '')
   return phone;
 
+# Чекает телефон и показывает/скрывает форму заполнения пароля, если такой телефон есть в базе
 window.check_phone = (phone) ->
   if (is_valid_phone(phone))
     callback = (response) ->
@@ -31,3 +34,12 @@ window.check_phone = (phone) ->
 $(document).on 'keyup', '#login-input', () ->
   phone = format_phone($(this).val());
   check_phone(phone);
+
+
+# Изменяет роль на организатора
+$(document).on 'click', '#pills-organizer-tab', () ->
+  $('#role-input').val('organizer');
+
+# Изменяет роль на доктора
+$(document).on 'click', '#pills-doctor-tab', () ->
+  $('#role-input').val('doctor');
