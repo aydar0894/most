@@ -1,5 +1,5 @@
 class OrganizersController < ApplicationController
-  before_action :set_organizer, only: [:edit, :update]
+  before_action :set_organizer, only: [:edit, :update, :show]
   before_action :only_admin, only: [:index, :new, :create, :destroy]
   before_action :only_organizer, only: [:show, :edit, :update, :my_events, :statistics]
 

@@ -66,4 +66,9 @@ class User < ApplicationRecord
 		self.profile&.destroy
 	end
 
+	def phone= phone_number
+		tel = Phonelib.parse(phone_number)
+		write_attribute(:phone, tel.to_s) if tel.valid?
+	end
+
 end

@@ -13,6 +13,9 @@
           = f.label :email, class: 'required'
           = f.email_field :email, class: 'form-control', placeholder: 'Введите email'
         .form-group
+          = f.label :phone, class: 'required'
+          = f.text_field :phone, class: 'form-control', placeholder: 'Введите телефон'
+        .form-group
           = f.label :password, class: 'required'
           = f.password_field :password, class: 'form-control', placeholder: 'Введите пароль'
         .form-group
