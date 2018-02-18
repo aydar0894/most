@@ -4,7 +4,6 @@ class Doctor < ApplicationRecord
   has_many :event_doctors
   has_many :events, through: :event_doctors
 
-
   has_attached_file :avatar,
     styles: { thumb: "75x100#" }
   validates_attachment_content_type :avatar,
