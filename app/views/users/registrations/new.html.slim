@@ -22,15 +22,17 @@
           = f.label :password_confirmation, class: 'required'
           = f.password_field :password_confirmation, class: 'form-control', placeholder: 'Введите подтверждение пароля'
 
+        = f.hidden_field :role, class: 'd-none', value: 'doctor', id: 'role-input'
+
         .mb-5
 
         h6.text-center Регистрация в качестве:
 
         ul#pills-tab.nav.nav-pills role="tablist"
           li.nav-item.col-6
-            a#pills-home-tab.nav-link.active aria-controls="pills-doctor" aria-selected="true" data-toggle="pill" href="#pills-doctor" role="tab" Доктора
+            a#pills-doctor-tab.nav-link.active aria-controls="pills-doctor" aria-selected="true" data-toggle="pill" href="#pills-doctor" role="tab" Доктора
           li.nav-item.col-6
-            a#pills-profile-tab.nav-link aria-controls="pills-organizer" aria-selected="false" data-toggle="pill" href="#pills-organizer" role="tab" Организатора
+            a#pills-organizer-tab.nav-link aria-controls="pills-organizer" aria-selected="false" data-toggle="pill" href="#pills-organizer" role="tab" Организатора
         #pills-tabContent.tab-content.mb-3
           #pills-doctor.tab-pane.fade.show.active aria-labelledby="pills-doctor-tab" role="tabpanel"
             #reg-form-doctor
