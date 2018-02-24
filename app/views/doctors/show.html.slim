@@ -1,19 +1,19 @@
 p#notice = notice
 
+ul.nav.nav-tabs role="tablist"
+  li.nav-item
+    a.nav-link.active href='#profile-info'  data-toggle="tab"
+      | Ваш личный профиль
+  li.nav-item
+    a.nav-link href='#profile-available__events' data-toggle="tab"
+      | Запланировать мероприятие
+  li.nav-item
+    a.nav-link href='#profile-doctor__events'  data-toggle="tab"
+      | План моих мероприятий
+  li.nav-item
+    a.nav-link href='#profile-archive__events'  data-toggle="tab"
+      | Архив посещенных мероприятий
 #profile-tabs
-  ul.nav.nav-tabs role="tablist"
-    li.nav-item
-      a.nav-link.active href='#profile-info'  data-toggle="tab"
-        | Ваш личный профиль
-    li.nav-item
-      a.nav-link href='#profile-available__events' data-toggle="tab"
-        | Запланировать мероприятие
-    li.nav-item
-      a.nav-link href='#profile-doctor__events'  data-toggle="tab"
-        | План моих мероприятий
-    li.nav-item
-      a.nav-link href='#profile-archive__events'  data-toggle="tab"
-        | Архив посещенных мероприятий
   #profile-info.tab-pane.fade.show.active
     p
       strong Фото

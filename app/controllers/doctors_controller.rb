@@ -112,7 +112,9 @@ class DoctorsController < ApplicationController
       phone = Phonelib.parse params[:phone]
       if phone.valid?
         doctor.phone = phone.to_s
-        doctor.save!
+        true
+      else
+        false
       end
     end
 

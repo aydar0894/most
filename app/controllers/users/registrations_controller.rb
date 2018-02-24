@@ -21,10 +21,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @organizer = Organizer.new(organizer_params)
       @organizer.user_id = @user.id
       @organizer.save
+    elsif @user.operator?
+      @operator = Operator.new(operator_params)
+      generated_password = Devise.friendly_token.first(8)
+      pp generated_password
+      @user.role = 'operator'
+      @user.password = @user.password_confirmation = generated_password
+      @user.save
+      @operator.user_id = @user.id
+      @operator.save
     end
 
-    return redirect_to user_session_path
-
+    if @user.operator?
+      return redirect_to root_path
+    else
+      return redirect_to user_session_path 
+    end
   end
 
 
@@ -57,6 +69,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:user).require(:doctor).permit(:first_name, :last_name, :middle_name, :avatar)
   end
 
+  def operator_params
+    params.require(:user).require(:doctor).permit(:first_name, :last_name, :middle_name, :avatar)
+  end
+
   def organizer_params
     params.require(:user).require(:organizer).permit(:company_name, :logo)
   end
@@ -67,7 +83,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:password_confirmation])
   end
 
 

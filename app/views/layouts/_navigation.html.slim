@@ -19,7 +19,7 @@ nav.navbar.navbar-expand-md.navbar-landing
               | Войти
         - else
           li.nav-item class=("#{nav_item_active(@navigation_page, :profile)}")
-            - profile_path = (current_user.organizer? ? org_events_path : new_user_session_path)
+            - profile_path = (current_user.admin? ? admin_path : current_user.profile)
             = link_to profile_path, class: 'nav-link'
               = image_tag 'user_auth.png', class: 'user_auth_icon'
               = current_user.name
