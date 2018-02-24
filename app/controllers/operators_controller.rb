@@ -46,8 +46,16 @@ class OperatorsController < ApplicationController
   # POST /operators
   # POST /operators.json
   def create
+    generated_password = Devise.friendly_token.first(8)
+    pp generated_password
+    @user = User.new(user_params)
+    @user.role = 'operator'
+    @user.password = generated_password
+    @user.save
     @operator = Operator.new(operator_params)
-
+    @operator.user_id = @user.id
+    @operator.organizer_id = current_user.profile.id if current_user.organizer?
+    # RegistrationMailer.welcome(user, generated_password).deliver
     respond_to do |format|
       if @operator.save
         format.html { redirect_to @operator, notice: 'Operator was successfully created.' }
@@ -89,13 +97,15 @@ class OperatorsController < ApplicationController
       @operator = Operator.find(params[:id])
     end
 
+    def user_params
+      params.require(:operator).require(:user).permit(:phone, :email, :role)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def operator_params
       params.require(:operator).permit(:first_name,
        :last_name, 
-       :middle_name, 
-       :phone,
-       :organizer_id,
+       :middle_name,
        :user_id)
     end
 end

@@ -1,6 +1,7 @@
 
 .col-6.offset-xs-0.offset-sm-0.offset-md-3
-  = form_for @operator do |f|
+  = form_for(@operator, :html => { :role => 'form'}) do |f|
+
     .form-group
       = f.label :first_name
       = f.text_area :first_name, class: 'form-control', placeholder: 'Введите имя'
@@ -10,7 +11,12 @@
     .form-group
       = f.label :middle_name
       = f.text_area :middle_name, class: 'form-control', placeholder: 'Введите отчество'
-    .form-group
-      = f.label :phone
-      = f.text_area :middle_name, class: 'form-control', placeholder: 'Введите отчество'
+
+    = f.fields_for :user do |ff|
+      .form-group
+        = ff.label :email
+        = ff.email_field :email, class: 'form-control', placeholder: 'Введите email'
+      .form-group
+        = ff.label :phone
+        = ff.text_area :phone, class: 'form-control', placeholder: 'Введите телефон'
     .actions = f.submit "Создать оператора"
