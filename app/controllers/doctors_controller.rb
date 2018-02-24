@@ -121,6 +121,7 @@ class DoctorsController < ApplicationController
       params.require(:doctor).permit(:first_name, 
         :last_name, 
         :middle_name,
+        :avatar,
         :birth_date, 
         :event_id)
     end
