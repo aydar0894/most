@@ -1,11 +1,14 @@
 p#notice = notice
 
 p
-  strong User:
+  strong Почта организатора:
   = @organizer.user.email
 p
-  strong Company name:
+  strong Название компании:
   = @organizer.company_name
+
+p
+  = link_to "Создать оператора", new_organizer_operator_path(@organizer)
 
 => link_to 'Edit', edit_organizer_path(@organizer)
 '|

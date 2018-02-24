@@ -1,16 +1,16 @@
-= form_for @operator do |f|
- 
 
-  .field
-    = f.label :first_name
-    = f.text_area :first_name
-  .field
-    = f.label :last_name
-    = f.text_area :last_name
-  .field
-    = f.label :middle_name
-    = f.text_area :middle_name
-  .field
-    = f.label :user
-    = f.text_field :user
-  .actions = f.submit
+.col-6.offset-xs-0.offset-sm-0.offset-md-3
+  = form_for @operator do |f|
+    .form-group
+      = f.label :first_name
+      = f.text_area :first_name, class: 'form-control', placeholder: 'Введите имя'
+    .form-group
+      = f.label :last_name
+      = f.text_area :last_name, class: 'form-control', placeholder: 'Введите фамилию'
+    .form-group
+      = f.label :middle_name
+      = f.text_area :middle_name, class: 'form-control', placeholder: 'Введите отчество'
+    .form-group
+      = f.label :phone
+      = f.text_area :middle_name, class: 'form-control', placeholder: 'Введите отчество'
+    .actions = f.submit "Создать оператора"

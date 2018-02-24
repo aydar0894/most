@@ -19,17 +19,17 @@ class OperatorsController < ApplicationController
 
   def api_authorize_event_doctor_in
     event = Event.find(params[:event_id])
-    return render json: {"error" : "incorrect event"} if event.start > DateTime.current || event.finish <= DateTime.current
+    return render json: {"error": "incorrect event"} if event.start > DateTime.current || event.finish <= DateTime.current
     @event_doctor = EventDoctor.where(event_id: params[:event_id], doctor_id: params[:doctor_id])
-    return render json: {"error" : "user is not registered on this event"} if !@event_doctor
+    return render json: {"error": "user is not registered on this event"} if !@event_doctor
     @event_doctor.update(last_in: DateTime.current, status: 1)
   end
 
   def api_authorize_event_doctor_out
     event = Event.find(params[:event_id])
-    return render json: {"error" : "incorrect event"} if event.start > DateTime.current || event.finish <= DateTime.current
+    return render json: {"error": "incorrect event"} if event.start > DateTime.current || event.finish <= DateTime.current
     @event_doctor = EventDoctor.where(event_id: params[:event_id], doctor_id: params[:doctor_id])
-    return render json: {"error" : "user is not registered on this event"} if !@event_doctor
+    return render json: {"error": "user is not registered on this event"} if !@event_doctor
     @event_doctor.update(last_out: DateTime.current, status: 0)
     @event_doctor.update(event_time: @event_doctor.event_time + (@event_doctor.last_out - @event_doctor.last_in))  
   end
@@ -95,6 +95,7 @@ class OperatorsController < ApplicationController
        :last_name, 
        :middle_name, 
        :phone,
+       :organizer_id,
        :user_id)
     end
 end
