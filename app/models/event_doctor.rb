@@ -19,15 +19,11 @@ class EventDoctor < ApplicationRecord
 
   def qrcode_generate
     t = "/tmp/tempfile#{Time.current.to_i}.png"
-    RQRCode::QRCode.new("#{self.doctor.user_id}
-      _#{self.doctor.first_name}
-      _#{self.doctor.last_name}
-      _#{self.doctor.middle_name}
-      -#{self.event.id}
-      _#{self.event.title}").as_png(file:t)
+    RQRCode::QRCode.new("#{self.doctor.user_id}").as_png(file:t)
     file = File.open(t)
     self.qrcode = file
     file.close
+    File.delete(t)
     self.save
   end
 end

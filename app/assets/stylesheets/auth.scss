@@ -28,32 +28,33 @@
   padding: 10px;
   padding-bottom: 20px;
   margin-bottom: 20px;
-}
 
-.nav-pills {
-  text-align: center;
 
-  .nav-item {
-    padding-left: 0;
-    padding-right: 0;
+  .nav-pills {
+    text-align: center;
 
-    &:first-child .nav-link { border-left: 1px solid $primary-color; border-top-right-radius: 0; }
-    &:last-child .nav-link { border-right: 1px solid $primary-color; border-top-left-radius: 0; }
+    .nav-item {
+      padding-left: 0;
+      padding-right: 0;
 
-    .nav-link {
-      border-top: 1px solid $primary-color;
-      border-radius: 0.25rem 0.25rem 0 0;
-      background-color: #f4f4f4;
-      &.active {
-        background-color: $primary-color;
+      &:first-child .nav-link { border-left: 1px solid $primary-color; border-top-right-radius: 0; }
+      &:last-child .nav-link { border-right: 1px solid $primary-color; border-top-left-radius: 0; }
+
+      .nav-link {
+        border-top: 1px solid $primary-color;
+        border-radius: 0.25rem 0.25rem 0 0;
+        background-color: #f4f4f4;
+        &.active {
+          background-color: $primary-color;
+        }
       }
     }
   }
-}
 
-.tab-content {
-  border: 1px solid $primary-color;
-  border-top: none;
-  border-radius: 0 0 0.25rem 0.25rem;
-  padding: 10px;
+  .tab-content {
+    border: 1px solid $primary-color;
+    border-top: none;
+    border-radius: 0 0 0.25rem 0.25rem;
+    padding: 10px;
+  }
 }

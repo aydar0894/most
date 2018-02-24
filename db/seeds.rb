@@ -12,6 +12,7 @@ puts 'CREATED ADMIN USER: ' << user.email
 doc = User.create(
 	email: 'doctor1@mail.ru',
 	password: '123321',
+	phone: '+79111111111',
 	role: :doctor
 	)
 
@@ -28,6 +29,7 @@ Doctor.create(
 org = User.create(
 	email: 'organizer1@mail.ru',
 	password: '123321',
+	phone: '+79222222222',
 	role: :organizer
 	)
 
@@ -40,6 +42,7 @@ Organizer.create(
 oper = User.create(
 	email: 'operator1@mail.ru',
 	password: '123321',
+	phone: '+79333333333',
 	role: :operator
 	)
 
@@ -49,5 +52,3 @@ Operator.create(
 	middle_name: 'Михайлович',
 	user_id: oper.id
 	)
-
-

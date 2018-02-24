@@ -14,6 +14,11 @@ nav.navbar.navbar-expand-md.navbar-landing
               | Войти
         - else
           li.nav-item class=("#{nav_item_active(@navigation_page, :profile)}")
-            = link_to new_user_session_path, class: 'nav-link'
+            - profile_path = (current_user.admin? ? '/admin' : current_user.user? ? root_path : current_user.profile)
+            = link_to profile_path, class: 'nav-link'
               = image_tag 'user_auth.png', class: 'user_auth_icon'
-              | Профиль
+              = current_user.name
+          li.nav-item
+            = link_to destroy_user_session_path, method: :delete, class: 'nav-link'
+              | |
+              span.ml-3 Выйти

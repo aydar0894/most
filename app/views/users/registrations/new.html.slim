@@ -13,36 +13,29 @@
           = f.label :email, class: 'required'
           = f.email_field :email, class: 'form-control', placeholder: 'Введите email'
         .form-group
+          = f.label :phone, class: 'required'
+          = f.text_field :phone, class: 'form-control', placeholder: 'Введите телефон'
+        .form-group
           = f.label :password, class: 'required'
           = f.password_field :password, class: 'form-control', placeholder: 'Введите пароль'
         .form-group
           = f.label :password_confirmation, class: 'required'
           = f.password_field :password_confirmation, class: 'form-control', placeholder: 'Введите подтверждение пароля'
 
+        = f.hidden_field :role, class: 'd-none', value: 'doctor', id: 'role-input'
+
         .mb-5
-
-        / .form-group
-        /   = f.label :role, "Вы", class: 'required'
-        /   = f.select :role, User.registration_roles.map{ |name| [name.to_s.humanize, name] }
-
-
-        / input class="role-radio" type="radio" name="role" value="doctor" id="reg-radio-doctor" checked="checked"
-        / label class="rale-radio-label" for="reg-radio-doctor" Доктор
-
-        / input class="role-radio" type="radio" name="role" value="organizer" id="reg-radio-organizer"
-        / label class="rale-radio-label" for="reg-radio-organizer" Организатор
 
         h6.text-center Регистрация в качестве:
 
         ul#pills-tab.nav.nav-pills role="tablist"
           li.nav-item.col-6
-            a#pills-home-tab.nav-link.active aria-controls="pills-doctor" aria-selected="true" data-toggle="pill" href="#pills-doctor" role="tab" Доктора
+            a#pills-doctor-tab.nav-link.active aria-controls="pills-doctor" aria-selected="true" data-toggle="pill" href="#pills-doctor" role="tab" Доктора
           li.nav-item.col-6
-            a#pills-profile-tab.nav-link aria-controls="pills-organizer" aria-selected="false" data-toggle="pill" href="#pills-organizer" role="tab" Организатора
+            a#pills-organizer-tab.nav-link aria-controls="pills-organizer" aria-selected="false" data-toggle="pill" href="#pills-organizer" role="tab" Организатора
         #pills-tabContent.tab-content.mb-3
           #pills-doctor.tab-pane.fade.show.active aria-labelledby="pills-doctor-tab" role="tabpanel"
             #reg-form-doctor
-              / h6.text-center Личная информация
               = f.fields_for :doctor do |doc|
                 .form-group
                   = doc.label :first_name, class: 'required'
@@ -55,34 +48,10 @@
                   = doc.text_field :middle_name, class: 'form-control', placeholder: 'Введите отчество'
           #pills-organizer.tab-pane.fade aria-labelledby="pills-organizer-tab" role="tabpanel"
             #reg-form-organized
-              / h6.text-center Информация об организации
               = f.fields_for :organizer do |org|
                 .form-group
                   = org.label :company_name, class: 'required'
                   = org.text_field :company_name, class: 'form-control', placeholder: 'Введите название организации'
-
-
-
-        / #reg-form
-        /   #reg-form-doctor
-        /     h6.text-center Личная информация
-        /     = f.fields_for :doctor do |doc|
-        /       .form-group
-        /         = doc.label :first_name
-        /         = doc.text_field :first_name, class: 'form-control'
-        /       .form-group
-        /         = doc.label :last_name
-        /         = doc.text_field :last_name, class: 'form-control'
-        /       .form-group
-        /         = doc.label :middle_name
-        /         = doc.text_field :middle_name, class: 'form-control'
-        /
-        /   #reg-form-organized
-        /     h6.text-center Информация об организации
-        /     = f.fields_for :organizer do |org|
-        /       .form-group
-        /         = org.label :company_name
-        /         = org.text_field :company_name, class: 'form-control'
 
         .info.mb-3
           | Поля помеченные

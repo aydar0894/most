@@ -6,16 +6,29 @@
 
       .col-8.mx-auto.mt-5
         = devise_error_messages!
+        / .form-group
+        /   = f.label :email, class: 'required'
+        /   = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Введите email'
         .form-group
-          = f.label :email, class: 'required'
-          = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Введите email'
-        .form-group
-          = f.label :password, class: 'required'
-          = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Введите пароль'
-        .field
-          = f.check_box :remember_me, class: 'mr-1'
-          = f.label :remember_me, "Запомнить меня"
-        .actions
-          = f.submit "Войти", class: 'btn btn-primary'
+          = f.label :login, 'Телефон', class: 'required'
+          / .input-group
+          /   .input-group-prepend
+          /     .input-group-text
+          /       | +7
+          = f.text_field :login, autofocus: true, class: 'form-control', placeholder: 'Введите номер телефона', id: 'login-input'
+          .form-text.text-muted
+            | Телефон должен начинаться с +7. Пример: +79611223344
+        #sign-in-form.d-none
+          .form-group
+            = f.label :password, class: 'required'
+            = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Введите пароль'
+          .field
+            = f.check_box :remember_me, class: 'mr-1'
+            = f.label :remember_me, "Запомнить меня"
+          .actions
+            = f.submit "Войти", class: 'btn btn-primary'
 
 = render "users/shared/links"
+
+javascript:
+  window.check_phone($('#login-input').val());

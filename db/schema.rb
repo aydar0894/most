@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20180208031442) do
-=======
-ActiveRecord::Schema.define(version: 20180208023811) do
->>>>>>> feat_doctor_event_changes
+ActiveRecord::Schema.define(version: 20180218033511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +31,10 @@ ActiveRecord::Schema.define(version: 20180208023811) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["user_id"], name: "index_doctors_on_user_id"
   end
 
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20180208023811) do
     t.datetime "last_in", default: "2018-01-01 00:00:00"
     t.datetime "last_out", default: "2018-01-01 00:00:00"
     t.float "event_time", default: 0.0
-    t.binary "qrcode"
     t.string "qrcode_file_name"
     t.string "qrcode_content_type"
     t.integer "qrcode_file_size"
@@ -83,6 +82,10 @@ ActiveRecord::Schema.define(version: 20180208023811) do
     t.text "location"
     t.text "description"
     t.integer "max_participants", default: 0
+    t.string "logo_file_name"
+    t.string "logo_content_type"
+    t.integer "logo_file_size"
+    t.datetime "logo_updated_at"
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
   end
 
@@ -126,6 +129,7 @@ ActiveRecord::Schema.define(version: 20180208023811) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.integer "role"
+    t.string "phone", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

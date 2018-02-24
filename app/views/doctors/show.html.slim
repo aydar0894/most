@@ -1,69 +1,162 @@
 p#notice = notice
 
-p
-  strong First name:
-  = @doctor.first_name
-p
-  strong Last name:
-  = @doctor.last_name
-p
-  strong Middle name:
-  = @doctor.middle_name
-p
-  strong Birth date:
-  = @doctor.birth_date
-p
-  strong User:
-  = @doctor.user
+#profile-tabs
+  .col-xl-5.col-lg-5.col-md-5.col-sm-8.col-9.bhoechie-tab-container
+    .col-xl-3.col-lg-3.col-md-3.col-sm-3.col-3.bhoechie-tab-menu
+      nav.flex-columns
+        a.list-group-item.active.text-center[href="#"]
 
-=> link_to 'Edit', edit_doctor_path(@doctor)
-'|
-=< link_to 'Back', doctors_path
+        h4.glyphicon.glyphicon-plane
+        br
+        | Flight 
+        a.list-group-item.text-center[href="#"]
 
+        h4.glyphicon.glyphicon-road
+        br
+        | Train 
+        a.list-group-item.text-center[href="#"]
 
-h2 Все события
-table.table
-  thead
-    tr
-      th id
-      th Название
-      th Статус
-  tbody
-    - @doctor.events_available.each do |event|
-      tr
-        td
-          = event.id
-        td
-          = link_to event.title, event
-        td
-          span.badge.badge-default
-            | Доступно для регистрации
-          = link_to 'Зарегистрироваться',
-            doctor_event_register_path(@doctor, event),
-            class: "btn btn-sm btn-success" ,
-            method: :post
+        h4.glyphicon.glyphicon-home
+        br
+        | Hotel 
+        a.list-group-item.text-center[href="#"]
 
-h2 Мои мероприятия
-table.table
-  thead
-    tr
-      th id
-      th Название
-      th Статус
-  tbody
-    - @doctor.event_doctors.each do |event_doctor|
-      tr
-        td
-          = event_doctor.event.id
-        td
-          = link_to event_doctor.event.title, event_doctor.event
-        td
-          span.badge.badge-success
-            | Вы зарегистрированы
-        td
-          = image_tag event_doctor.qrcode.url(:thumb)
-        td
-          = link_to "Отменить регистрацию",
-          doctor_event_unregister_path(@doctor, event_doctor.event),
-          class: "btn btn-danger",
-          method: :delete
+        h4.glyphicon.glyphicon-cutlery
+        br
+        | Restaurant 
+        a.list-group-item.text-center[href="#"]
+
+        h4.glyphicon.glyphicon-credit-card
+        br
+        | Credit Card 
+  ul.nav.nav-tabs role="tablist"
+    li.nav-item
+      a.nav-link.active href='#profile-info'  data-toggle="tab"
+        | Ваш личный профиль
+    li.nav-item
+      a.nav-link href='#profile-available__events' data-toggle="tab"
+        | Запланировать мероприятие
+    li.nav-item
+      a.nav-link href='#profile-doctor__events'  data-toggle="tab"
+        | План моих мероприятий
+    li.nav-item
+      a.nav-link href='#profile-archive__events'  data-toggle="tab"
+        | Архив посещенных мероприятий
+  .tab-content.col-xl-9.col-lg-9.col-md-9.col-sm-9.col-9.bhoechie-tab
+    .bhoechie-tab-content.active
+        center
+          h1.glyphicon.glyphicon-plane[style="font-size:14em;color:#55518a"]
+          h2[style="margin-top: 0;color:#55518a"]
+            | Cooming Soon
+          h3[style="margin-top: 0;color:#55518a"]
+            | Flight Reservation
+      .bhoechie-tab-content
+        center
+          h1.glyphicon.glyphicon-road[style="font-size:12em;color:#55518a"]
+          h2[style="margin-top: 0;color:#55518a"]
+            | Cooming Soon
+          h3[style="margin-top: 0;color:#55518a"]
+            | Train Reservation
+      .bhoechie-tab-content
+        center
+          h1.glyphicon.glyphicon-home[style="font-size:12em;color:#55518a"]
+          h2[style="margin-top: 0;color:#55518a"]
+            | Cooming Soon
+          h3[style="margin-top: 0;color:#55518a"]
+            | Hotel Directory
+      .bhoechie-tab-content
+        center
+          h1.glyphicon.glyphicon-cutlery[style="font-size:12em;color:#55518a"]
+          h2[style="margin-top: 0;color:#55518a"]
+            | Cooming Soon
+          h3[style="margin-top: 0;color:#55518a"]
+            | Restaurant Diirectory
+      .bhoechie-tab-content
+        center
+          h1.glyphicon.glyphicon-credit-card[style="font-size:12em;color:#55518a"]
+          h2[style="margin-top: 0;color:#55518a"]
+            | Cooming Soon
+          h3[style="margin-top: 0;color:#55518a"]
+            | Credit Card
+    #profile-info.tab-pane.fade.show.active
+      p
+        strong Фото
+        = image_tag @doctor.avatar.url(:thumb)
+      p
+        = @doctor.full_name
+      / p
+      /   strong Дата рождения :
+      /   = @doctor.birth_date.to_s(:ru_date)
+
+      => link_to 'Редактировать профиль', edit_doctor_path(@doctor)
+    #profile-available__events.tab-pane.fade
+      = render "available_events_calendar", doctor: @doctor
+
+    #profile-doctor__events.tab-pane.fade
+      / h2 Мои мероприятия
+      table.table
+        thead
+          tr
+            th id
+            th Лого
+            th Название
+            th Статус
+            th QR-код
+            th Действия
+        tbody
+          - @doctor.pending_events.each do |event|
+            tr
+              td
+                = event.id
+              td
+                = image_tag event.logo.url(:thumb)
+              td
+                = link_to event.title, event
+              td
+                span.badge.badge-success
+                  - if Time.now < event.start
+                    | Вы зарегистрированы
+                  - else
+                    | Мероприятие началось
+              td
+                = image_tag event.event_doctors.find_by_doctor_id(@doctor.id).qrcode.url(:thumb)
+              td
+                = link_to "Отменить регистрацию",
+                  doctor_event_unfollow_path(@doctor, event),
+                  class: "btn btn-danger",
+                  method: :delete
+
+    #profile-archive__events.tab-pane.fade
+      table.table
+        thead
+          tr
+            th id
+            th Лого
+            th Название
+            th Статус
+            / th QR-кода
+            th Действия
+        tbody
+          - @doctor.archive_events.each do |event|
+            tr
+              td
+                = event.id
+              td
+                = image_tag event.logo.url(:thumb)
+              td
+                = link_to event.title, event
+              / td
+              /   span.badge.badge-success
+              /     | Мероприятие завершено
+              / td
+              /   = image_tag event_doctor.qrcode.url(:thumb)
+              td
+                - if Time.now > event.finish
+                  .btn.btn-danger Пройти тесты
+                  / = link_to "Пройти тесты",
+                    # doctor_event_tests_path(@doctor, event_doctor.event),
+                    # class: "btn btn-danger",
+                    # method: :delete
+                - else
+                  .btn.btn-danger
+                    | Отмена не возможна

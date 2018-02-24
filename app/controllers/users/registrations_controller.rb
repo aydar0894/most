@@ -12,7 +12,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.create(user_params)
-
     # abort @user.role.inspect
     if @user.doctor?
       @doctor = Doctor.new(doctor_params)
@@ -51,19 +50,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def user_params
-    params.require(:user).permit(:password, :email, :role)
+    params.require(:user).permit(:password, :password_confirmation, :phone, :email, :role)
   end
 
   def doctor_params
-    params.require(:user).require(:doctor).permit(:first_name, :last_name, :middle_name)
+    params.require(:user).require(:doctor).permit(:first_name, :last_name, :middle_name, :avatar)
   end
 
   def organizer_params
-    params.require(:user).require(:organizer).permit(:company_name)
+    params.require(:user).require(:organizer).permit(:company_name, :logo)
   end
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:password_confirmation])
   end
 
 
