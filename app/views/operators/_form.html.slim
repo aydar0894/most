@@ -1,22 +1,24 @@
+= form_for(@operator, :html => { :role => 'form'}) do |f|
 
-.col-6.offset-xs-0.offset-sm-0.offset-md-3
-  = form_for(@operator, :html => { :role => 'form'}) do |f|
-
+  .col-8.mx-auto.mt-5
     .form-group
-      = f.label :first_name
-      = f.text_area :first_name, class: 'form-control', placeholder: 'Введите имя'
+      = f.label :first_name, class: 'required'
+      = f.text_field :first_name, class: 'form-control', placeholder: 'Введите имя', required: true
     .form-group
-      = f.label :last_name
-      = f.text_area :last_name, class: 'form-control', placeholder: 'Введите фамилию'
+      = f.label :last_name, class: 'required'
+      = f.text_field :last_name, class: 'form-control', placeholder: 'Введите фамилию', required: true
     .form-group
       = f.label :middle_name
-      = f.text_area :middle_name, class: 'form-control', placeholder: 'Введите отчество'
+      = f.text_field :middle_name, class: 'form-control', placeholder: 'Введите отчество'
 
     = f.fields_for :user do |ff|
       .form-group
-        = ff.label :email
-        = ff.email_field :email, class: 'form-control', placeholder: 'Введите email'
+        = ff.label :email, class: 'required'
+        = ff.email_field :email, class: 'form-control', placeholder: 'Введите email', required: true
       .form-group
-        = ff.label :phone
-        = ff.text_area :phone, class: 'form-control', placeholder: 'Введите телефон'
-    .actions = f.submit "Создать оператора"
+        = ff.label :phone, 'Номер телефона', class: 'required'
+        = ff.text_field :phone, class: 'form-control', placeholder: 'Введите телефон', required: true
+    .actions
+      = f.submit "Создать оператора", class: 'btn btn-primary'
+      - profile_path = (current_user.admin? ? admin_path : current_user.profile)
+      = link_to 'Назад', profile_path, class: 'btn'

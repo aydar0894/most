@@ -4,7 +4,12 @@ class OperatorsController < ApplicationController
   # GET /operators
   # GET /operators.json
   def index
-    @operators = Operator.all
+    if params["organizer_id"]
+      @organizer = Organizer.find(params["organizer_id"])
+      @operators = Operator.where(organizer_id: params["organizer_id"])
+    else
+      @operators = Operator.all
+    end
   end
 
   # GET /operators/1
@@ -31,7 +36,7 @@ class OperatorsController < ApplicationController
     @event_doctor = EventDoctor.where(event_id: params[:event_id], doctor_id: params[:doctor_id])
     return render json: {"error": "user is not registered on this event"} if !@event_doctor
     @event_doctor.update(last_out: DateTime.current, status: 0)
-    @event_doctor.update(event_time: @event_doctor.event_time + (@event_doctor.last_out - @event_doctor.last_in))  
+    @event_doctor.update(event_time: @event_doctor.event_time + (@event_doctor.last_out - @event_doctor.last_in))
   end
 
   # GET /operators/new
@@ -104,7 +109,7 @@ class OperatorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def operator_params
       params.require(:operator).permit(:first_name,
-       :last_name, 
+       :last_name,
        :middle_name,
        :user_id)
     end

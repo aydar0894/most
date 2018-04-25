@@ -1,19 +1,21 @@
 = form_for @doctor do |f|
 
+  .col-8.mx-auto.mt-5
+    .form-group
+      = f.label :first_name, 'Имя'
+      = f.text_field :first_name, class: 'form-control'
+    .form-group
+      = f.label :last_name, 'Фамилия'
+      = f.text_field :last_name, class: 'form-control'
+    .form-group
+      = f.label :middle_name, 'Отчество'
+      = f.text_field :middle_name, class: 'form-control'
+    .form-group
+      = f.label :avatar, 'Аватар'
+      = f.file_field :avatar, class: 'form-control'
+    .form-group
+      = f.label :birth_date, 'Дата рождения'
+      = f.datetime_select :birth_date, class: 'form-control'
 
-  .field
-    = f.label :first_name
-    = f.text_area :first_name
-  .field
-    = f.label :last_name
-    = f.text_area :last_name
-  .field
-    = f.label :middle_name
-    = f.text_area :middle_name
-  .field
-    = f.label :avatar
-    = f.file_field :avatar
-  .field
-    = f.label :birth_date
-    = f.datetime_select :birth_date
-  .actions = f.submit
+    .actions
+      = f.submit 'Сохранить', class: 'btn btn-primary'

@@ -1,9 +1,15 @@
 = form_for @organizer do |f|
-  
-  / .field
-  /   = f.label :user
-  /   = f.text_field :user
-  .field
-    = f.label :company_name
-    = f.text_area :company_name
-  .actions = f.submit
+
+  .col-8.mx-auto.mt-5
+    / .field
+    /   = f.label :user
+    /   = f.text_field :user
+
+    .form-group
+      = f.label :company_name, 'Название компании', class: 'reqired'
+      = f.text_area :company_name, class: 'form-control', required: true
+
+    .actions
+      = f.submit 'Сохранить', class: 'btn btn-primary'
+      - profile_path = (current_user.admin? ? admin_path : current_user.profile)
+      = link_to 'Назад', profile_path, class: 'btn'
