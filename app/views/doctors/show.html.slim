@@ -1,64 +1,98 @@
 p#notice = notice
 
-p
-  strong First name:
-  = @doctor.first_name
-p
-  strong Last name:
-  = @doctor.last_name
-p
-  strong Middle name:
-  = @doctor.middle_name
-p
-  strong Birth date:
-  = @doctor.birth_date
-p
-  strong User:
-  = @doctor.user
+ul.nav.nav-tabs role="tablist"
+  li.nav-item
+    a.nav-link.active href='#profile-info'  data-toggle="tab"
+      | Ваш личный профиль
+  li.nav-item
+    a.nav-link href='#profile-available__events' data-toggle="tab"
+      | Запланировать мероприятие
+  li.nav-item
+    a.nav-link href='#profile-doctor__events'  data-toggle="tab"
+      | План моих мероприятий
+  li.nav-item
+    a.nav-link href='#profile-archive__events'  data-toggle="tab"
+      | Архив посещенных мероприятий
+#profile-tabs
+  #profile-info.tab-pane.fade.show.active
+    p
+      strong Фото
+      = image_tag @doctor.avatar.url(:thumb)
+    p
+      = @doctor.full_name
+    / p
+    /   strong Дата рождения :
+    /   = @doctor.birth_date.to_s(:ru_date)
 
-=> link_to 'Edit', edit_doctor_path(@doctor)
-'|
-=< link_to 'Back', doctors_path
+    => link_to 'Редактировать профиль', edit_doctor_path(@doctor)
+  #profile-available__events.tab-pane.fade
+    = render "available_events_calendar", doctor: @doctor
 
+  #profile-doctor__events.tab-pane.fade
+    / h2 Мои мероприятия
+    table.table
+      thead
+        tr
+          th id
+          th Лого
+          th Название
+          th Статус
+          th QR-код
+          th Действия
+      tbody
+        - @doctor.pending_events.each do |event|
+          tr
+            td
+              = event.id
+            td
+              = image_tag event.logo.url(:thumb)
+            td
+              = link_to event.title, event
+            td
+              span.badge.badge-success
+                - if Time.now < event.start
+                  | Вы зарегистрированы
+                - else
+                  | Мероприятие началось
+            td
+              = image_tag event.event_doctors.find_by_doctor_id(@doctor.id).qrcode.url(:thumb)
+            td
+              = link_to "Отменить регистрацию",
+                doctor_event_unfollow_path(@doctor, event),
+                class: "btn btn-danger",
+                method: :delete
 
-h2 Все события
-table.table
-  thead
-    tr
-      th id
-      th Название
-      th Статус
-  tbody
-    - @events_available.each do |event|
-      tr
-        td
-          = event.id
-        td
-          = link_to event.title, event
-        td
-          span.badge.badge-default
-            | Доступно для регистрации
-          = link_to 'Зарегистрироваться',
-            doctor_event_register_path(@doctor, event),
-            class: "btn btn-sm btn-success" ,
-            method: :post
-
-h2 Мои мероприятия
-table.table
-  thead
-    tr
-      th id
-      th Название
-      th Статус
-  tbody
-    - @doctor.events.each do |event|
-      tr
-        td
-          = event.id
-        td
-          = link_to event.title, event
-        td
-          span.badge.badge-success
-            | Вы зарегистрированы
-          .btn.btn-danger
-            | Отменить регистрацию
+  #profile-archive__events.tab-pane.fade
+    table.table
+      thead
+        tr
+          th id
+          th Лого
+          th Название
+          th Статус
+          / th QR-кода
+          th Действия
+      tbody
+        - @doctor.archive_events.each do |event|
+          tr
+            td
+              = event.id
+            td
+              = image_tag event.logo.url(:thumb)
+            td
+              = link_to event.title, event
+            / td
+            /   span.badge.badge-success
+            /     | Мероприятие завершено
+            / td
+            /   = image_tag event_doctor.qrcode.url(:thumb)
+            td
+              - if Time.now > event.finish
+                .btn.btn-danger Пройти тесты
+                / = link_to "Пройти тесты",
+                  # doctor_event_tests_path(@doctor, event_doctor.event),
+                  # class: "btn btn-danger",
+                  # method: :delete
+              - else
+                .btn.btn-danger
+                  | Отмена не возможна

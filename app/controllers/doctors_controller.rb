@@ -10,7 +10,10 @@ class DoctorsController < ApplicationController
 
 
   def show
-    @events_available = Event.all
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /doctors/new
@@ -71,7 +74,8 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.find(params[:doctor_id])
     @doctor_event = @doctor.event_doctors.build(:status => 0, :event_id => params[:event_id])
     @event = @doctor_event.event
-    @event.update(reggistrations_count: @event.reggistrations_count + 1)
+    @event.reggistrations_count += 1
+    @event.save
     if @doctor_event.save
       respond_to do |format|
         format.html { redirect_to doctor_event_path(@doctor, @event), notice: 'Вы зарегистрировались на мероприятие.' }
@@ -86,12 +90,12 @@ class DoctorsController < ApplicationController
   end
 
   # DELETE /doctors/1/events/1
-  def unregister
+  def unfollow
     @doctor = Doctor.find(params[:doctor_id])
-    @doctor_event = @doctor.event_doctors.find(:event_id => params[:event_id])
-    @doctor_event.destroy
     @event = Event.find(params[:event_id])
-    @event.update(reggistrations_count: @event.reggistrations_count - 1)
+    @event.reggistrations_count -= 1
+    @event.save
+    @doctor_event = @doctor.event_doctors.where(event_id: params[:event_id]).first.destroy
     respond_to do |format|
       format.html { redirect_to doctor_events_path(@doctor), notice: 'Вы отказались от посещения мероприятие.' }
       format.json { head :no_content}
@@ -104,8 +108,23 @@ class DoctorsController < ApplicationController
       @doctor = Doctor.find(params[:id])
     end
 
+    def check_phone doctor
+      phone = Phonelib.parse params[:phone]
+      if phone.valid?
+        doctor.phone = phone.to_s
+        true
+      else
+        false
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def doctor_params
-      params.require(:doctor).permit(:first_name, :last_name, :middle_name, :birth_date, :event_id)
+      params.require(:doctor).permit(:first_name, 
+        :last_name, 
+        :middle_name,
+        :avatar,
+        :birth_date, 
+        :event_id)
     end
 end

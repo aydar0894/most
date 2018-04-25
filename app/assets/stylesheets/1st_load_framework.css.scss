@@ -7,6 +7,10 @@
   outline: none;
 }
 
+body, html {
+  min-height: 100%;
+}
+
 textarea:focus, input:focus {
   border-color: inherit;
   -webkit-box-shadow: none;
@@ -16,6 +20,8 @@ textarea:focus, input:focus {
 
 main {
   padding-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 label.required:before {
@@ -26,4 +32,10 @@ label.required:before {
 
 .red {
   color: #f00;
+}
+
+.user_auth_icon {
+  height: 36px;
+  width: 36px;
+  margin-right: 10px;
 }

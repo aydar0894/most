@@ -1,0 +1,24 @@
+nav.navbar.navbar-expand-md.navbar-landing
+  .container-fluid.align-items-start
+    = link_to root_path, class: 'navbar-brand '
+      = image_tag 'logo2x_landing.png'
+    button.navbar-toggler.d-lg-none aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarsExampleDefault" data-toggle="collapse" type="button"
+      span.navbar-toggler-icon
+    #navbarsExampleDefault.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+      ul.navbar-nav
+        - if !current_user
+          li.nav-item class=("#{nav_item_active(@navigation_page, :sign_in)}")
+            = link_to new_user_session_path, class: 'nav-link'
+              = image_tag 'user_auth.png', class: 'user_auth_icon'
+              | Войти
+        - else
+          li.nav-item class=("#{nav_item_active(@navigation_page, :profile)}")
+            - profile_path = (current_user.admin? ? '/admin' : current_user.user? ? root_path : current_user.profile)
+            = link_to profile_path, class: 'nav-link'
+              = image_tag 'user_auth.png', class: 'user_auth_icon'
+              = current_user.name
+          li.nav-item
+            = link_to destroy_user_session_path, method: :delete, class: 'nav-link'
+              | |
+              span.ml-3 Выйти

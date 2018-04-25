@@ -1,8 +1,7 @@
-h1 Editing event
+.container
+  .authform
+    = form_for @event do |f|
+      h3.text-center.my-2.mb-3
+        | Изменение мероприятия
 
-== render 'form'
-
-=> link_to 'Show', @event
-'|
-=< link_to 'Back', events_path
-
+      == render 'form', f: f

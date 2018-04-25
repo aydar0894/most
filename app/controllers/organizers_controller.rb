@@ -1,5 +1,5 @@
 class OrganizersController < ApplicationController
-  before_action :set_organizer, only: [:edit, :update]
+  before_action :set_organizer, only: [:edit, :update, :show]
   before_action :only_admin, only: [:index, :new, :create, :destroy]
   before_action :only_organizer, only: [:show, :edit, :update, :my_events, :statistics]
 
@@ -40,7 +40,7 @@ class OrganizersController < ApplicationController
   # GET /organizers/1
   # GET /organizers/1.json
   # def show
-    
+
   # end
 
   # GET /organizers/new
@@ -100,6 +100,6 @@ class OrganizersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organizer_params
-      params.require(:organizer).permit(:user_id, :company_name)
+      params.require(:organizer).permit(:user_id, :phone, :company_name)
     end
 end

@@ -1,5 +1,8 @@
-h1 New operator
+.container
+  .panel
+    h3.text-center.my-2.mb-3
+      | Создание оператора
 
-== render 'form'
-
-= link_to 'Back', operators_path
+    == render 'form'
+/ .col-8.mx-auto.mt-5
+/ = link_to 'В профиль организатора', organizer_operators_path(current_user.profile)

@@ -7,6 +7,18 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
+
+  def user_exists
+    if User.find_for_database_authentication({login: params[:login]}) 
+      return render json: {user_exists: true}
+      #, status: 200
+    else
+      return render json: {user_exists: false}
+      #, status: 204
+    end
+  end
+
+
   # POST /resource/sign_in
   # def create
   #   super
@@ -20,7 +32,7 @@ class Users::SessionsController < Devise::SessionsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
+  def configure_sign_in_params
+    devise_parameter_sanitizer.permit(:user_exists, keys: [:login])
+  end
 end

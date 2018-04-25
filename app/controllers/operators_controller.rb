@@ -4,7 +4,12 @@ class OperatorsController < ApplicationController
   # GET /operators
   # GET /operators.json
   def index
-    @operators = Operator.all
+    if params["organizer_id"]
+      @organizer = Organizer.find(params["organizer_id"])
+      @operators = Operator.where(organizer_id: params["organizer_id"])
+    else
+      @operators = Operator.all
+    end
   end
 
   # GET /operators/1
@@ -19,19 +24,19 @@ class OperatorsController < ApplicationController
 
   def api_authorize_event_doctor_in
     event = Event.find(params[:event_id])
-    return render json: {"error" : "incorrect event"} if event.start > DateTime.current || event.finish <= DateTime.current
+    return render json: {"error": "incorrect event"} if event.start > DateTime.current || event.finish <= DateTime.current
     @event_doctor = EventDoctor.where(event_id: params[:event_id], doctor_id: params[:doctor_id])
-    return render json: {"error" : "user is not registered on this event"} if !@event_doctor
+    return render json: {"error": "user is not registered on this event"} if !@event_doctor
     @event_doctor.update(last_in: DateTime.current, status: 1)
   end
 
   def api_authorize_event_doctor_out
     event = Event.find(params[:event_id])
-    return render json: {"error" : "incorrect event"} if event.start > DateTime.current || event.finish <= DateTime.current
+    return render json: {"error": "incorrect event"} if event.start > DateTime.current || event.finish <= DateTime.current
     @event_doctor = EventDoctor.where(event_id: params[:event_id], doctor_id: params[:doctor_id])
-    return render json: {"error" : "user is not registered on this event"} if !@event_doctor
+    return render json: {"error": "user is not registered on this event"} if !@event_doctor
     @event_doctor.update(last_out: DateTime.current, status: 0)
-    @event_doctor.update(event_time: @event_doctor.event_time + (@event_doctor.last_out - @event_doctor.last_in))  
+    @event_doctor.update(event_time: @event_doctor.event_time + (@event_doctor.last_out - @event_doctor.last_in))
   end
 
   # GET /operators/new
@@ -46,8 +51,16 @@ class OperatorsController < ApplicationController
   # POST /operators
   # POST /operators.json
   def create
+    generated_password = Devise.friendly_token.first(8)
+    pp generated_password
+    @user = User.new(user_params)
+    @user.role = 'operator'
+    @user.password = generated_password
+    @user.save
     @operator = Operator.new(operator_params)
-
+    @operator.user_id = @user.id
+    @operator.organizer_id = current_user.profile.id if current_user.organizer?
+    # RegistrationMailer.welcome(user, generated_password).deliver
     respond_to do |format|
       if @operator.save
         format.html { redirect_to @operator, notice: 'Operator was successfully created.' }
@@ -89,8 +102,15 @@ class OperatorsController < ApplicationController
       @operator = Operator.find(params[:id])
     end
 
+    def user_params
+      params.require(:operator).require(:user).permit(:phone, :email, :role)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def operator_params
-      params.require(:operator).permit(:first_name, :last_name, :middle_name, :user_id)
+      params.require(:operator).permit(:first_name,
+       :last_name,
+       :middle_name,
+       :user_id)
     end
 end

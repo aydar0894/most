@@ -1,22 +1,21 @@
-h1 Статистика по прошедшим мероприятиям
+h2 Статистика по прошедшим мероприятиям
 
+.row
+  table.table width=("50")
+    tr
+      th Общее количество зарегистрированных на мероприятия пользователей за все время:
+      td = @total_regs
+    tr
+      th Общее количество участников мероприятия за все время:
+      td = @total_parts
+    tr
+      th Процент посещения ваших мероприятий:
+      td = @participating_percentage
 
-| Общее количество зарегистрированных на мероприятия пользователей за все время:
-br
-= @total_regs
-br
-| Общее количество участников мероприятия за все время:
-br
-= @total_parts
-br
-| Процент посещения ваших мероприятий:
-br
-= @participating_percentage
-
-table
+table.table
   thead
-    tr      
-      th Название 
+    tr
+      th Название
       th Время начала
       th Время окончания
       th Количество зарегистрированных пользователей
@@ -30,5 +29,5 @@ table
         td = event.start
         td = event.finish
         td = event.reggistrations_count
-        td = event.participants_count        
+        td = event.participants_count
         td = link_to 'Show', event
