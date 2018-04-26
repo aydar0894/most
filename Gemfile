@@ -56,7 +56,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'rspec-rails', '~> 3.7'
   # gem "factory_girl", "~> 4.0"
-  gem 'factory_bot'
+  gem "factory_bot_rails", "~> 4.0"
 end
 
 
