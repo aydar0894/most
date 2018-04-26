@@ -41,12 +41,22 @@ group :development do
   gem 'capistrano-rails-console'
   gem 'capistrano-rvm', '~> 0.1.1'
   gem 'rails_layout'
+
 end
+
 group :development, :test do
+  gem 'guard'
+  gem 'guard-rspec'
+  # gem 'guard-rubocop'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'rubocop'
+  gem 'rspec-rails', '~> 3.7'
+  # gem "factory_girl", "~> 4.0"
+  gem 'factory_bot'
 end
+
+
