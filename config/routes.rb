@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :events, only: [:show, :index]
+  resources :events, only: [:show, :index] 
+  #do 
+  #   match 'search' = >
+  # end
   authenticate :user do 
     resources :organizers do 
       resources :events

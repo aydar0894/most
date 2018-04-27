@@ -11,6 +11,9 @@ nav.navbar.navbar-expand-md.navbar-landing
       span.navbar-toggler-icon
     #navbarsExampleDefault.collapse.navbar-collapse
       ul.navbar-nav.mr-auto
+        / li.nav-item.pull-right
+        /   = form_tag search_events_path, method: :post, class: "navbar-form search-form" do
+        /     = search_field_tag :search_query, '', class: "", id: "search_query", placeholder: "Название мероприятия"
       ul.navbar-nav
         - if !current_user
           li.nav-item class=("#{nav_item_active(@navigation_page, :sign_in)}")
