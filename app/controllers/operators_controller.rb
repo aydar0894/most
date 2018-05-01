@@ -15,7 +15,7 @@ class OperatorsController < ApplicationController
       format.html { render :index }
       format.json {
          response = {
-           @operators
+           operators: @operators
          }
          render json: response
        }

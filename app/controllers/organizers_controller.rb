@@ -9,7 +9,7 @@ class OrganizersController < ApplicationController
     @organizers = Organizer.all
     respond_to do |format|
       format.html { render :index }
-      format.json { render json: @organizers}
+      format.json { render json: {organizers: @organizers}}
     end
   end
 
@@ -23,10 +23,10 @@ class OrganizersController < ApplicationController
       format.html { render :my_events }
       format.json {
          response = {
-           @all_events,
-           @current_events,
-           @upcoming_events,
-           @archive_events
+           all_events: @all_events,
+           current_events: @current_events,
+           upcoming_events: @upcoming_events,
+           archive_events: @archive_events
          }
          render json: response
        }
@@ -55,12 +55,12 @@ class OrganizersController < ApplicationController
       format.html { render :statistics }
       format.json {
          response = {
-           @all_events,
-           @archive_events,
-           @participating_percentage,
-           @total_regs,
-           @total_parts,
-           @archive_events
+           all_events: @all_events,
+           archive_events: @archive_events,
+           participating_percentage: @participating_percentage,
+           total_regs: @total_regs,
+           total_parts: @total_parts,
+           archive_events: @archive_events
          }
          render json: response
        }

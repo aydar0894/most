@@ -11,7 +11,7 @@ class EventsController < ApplicationController
       format.html { render :index }
       format.json {
          response = {
-           @events
+           events: @events
          }
          render json: response
        }

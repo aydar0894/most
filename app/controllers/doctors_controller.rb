@@ -10,7 +10,7 @@ class DoctorsController < ApplicationController
       format.html { render :index }
       format.json {
          response = {
-           @doctors
+           doctors: @doctors
          }
          render json: response
        }
@@ -21,7 +21,7 @@ class DoctorsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.js
+      format.json
     end
   end
 
