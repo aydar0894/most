@@ -6,6 +6,15 @@ class DoctorsController < ApplicationController
 
   def index
     @doctors = Doctor.all
+    respond_to do |format|
+      format.html { render :index }
+      format.json {
+         response = {
+           @doctors
+         }
+         render json: response
+       }
+    end
   end
 
 
@@ -87,6 +96,7 @@ class DoctorsController < ApplicationController
         format.json { render json: @doctor.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # DELETE /doctors/1/events/1
@@ -120,11 +130,11 @@ class DoctorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def doctor_params
-      params.require(:doctor).permit(:first_name, 
-        :last_name, 
+      params.require(:doctor).permit(:first_name,
+        :last_name,
         :middle_name,
         :avatar,
-        :birth_date, 
+        :birth_date,
         :event_id)
     end
 end

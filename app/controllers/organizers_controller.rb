@@ -7,6 +7,10 @@ class OrganizersController < ApplicationController
   # GET /organizers.json
   def index
     @organizers = Organizer.all
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @organizers}
+    end
   end
 
   def my_events
@@ -15,6 +19,18 @@ class OrganizersController < ApplicationController
     @current_events = @all_events.where('start <= ? AND finish >= ?', current_date, current_date)
     @upcoming_events = @all_events.where('start >= ?', current_date)
     @archive_events = @all_events.where('finish <= ?', current_date)
+    respond_to do |format|
+      format.html { render :my_events }
+      format.json {
+         response = {
+           @all_events,
+           @current_events,
+           @upcoming_events,
+           @archive_events
+         }
+         render json: response
+       }
+    end
   end
 
   def statistics
@@ -33,6 +49,21 @@ class OrganizersController < ApplicationController
       @participating_percentage = @total_regs/@total_parts * 100
     else
       @participating_percentage = 100
+    end
+
+    respond_to do |format|
+      format.html { render :statistics }
+      format.json {
+         response = {
+           @all_events,
+           @archive_events,
+           @participating_percentage,
+           @total_regs,
+           @total_parts,
+           @archive_events
+         }
+         render json: response
+       }
     end
 
   end
