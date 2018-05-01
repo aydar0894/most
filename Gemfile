@@ -49,12 +49,13 @@ group :development, :test do
   gem 'guard-rspec'
   # gem 'guard-rubocop'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 2.13'
+  gem 'capybara', '~> 3.0'
   gem 'selenium-webdriver'
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'rubocop'
   gem 'rspec-rails', '~> 3.7'
+  gem 'chromedriver-helper', '~> 1.1.0'
   # gem "factory_girl", "~> 4.0"
   gem "factory_bot_rails", "~> 4.0"
 end
