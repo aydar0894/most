@@ -6,6 +6,9 @@
     = f.label :title, 'Название', class: 'required'
     = f.text_area :title, class: 'form-control', placeholder: 'Введите название'
   .form-group
+    = f.label :description, 'Описание', class: 'required'
+    = f.text_area :description, class: 'form-control', placeholder: 'Введите название'
+  .form-group
     = f.label :start, 'Начало', class: 'required'
     br
     = f.datetime_select :start, class: 'form-control'
@@ -14,10 +17,13 @@
     br
     = f.datetime_select :finish, class: 'form-control'
   .form-group
-    = f.label :logo
+    = f.label :location, 'Место проведения', class: 'required'
+    = f.text_area :location, class: 'form-control', placeholder: 'Введите название'
+  .form-group
+    = f.label :logo, 'Логотип'
     = f.file_field :logo,class: 'form-control'
   .form-group
-    = f.label :max_participants, class: 'required'
+    = f.label :max_participants, 'Максимальное число участников', class: 'required'
     = f.number_field :max_participants,class: 'form-control'
 
   .mb-5

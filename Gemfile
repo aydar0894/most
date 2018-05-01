@@ -27,6 +27,7 @@ gem 'rqrcode'
 gem 'composite_primary_keys'
 gem "simple_calendar", "~> 2.0"
 gem 'phonelib', "~> 0.6.18"
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 
 
 group :development do

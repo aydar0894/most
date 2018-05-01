@@ -10,6 +10,16 @@ class OperatorsController < ApplicationController
     else
       @operators = Operator.all
     end
+
+    respond_to do |format|
+      format.html { render :index }
+      format.json {
+         response = {
+           operators: @operators
+         }
+         render json: response
+       }
+    end
   end
 
   # GET /operators/1

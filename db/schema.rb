@@ -111,6 +111,8 @@ ActiveRecord::Schema.define(version: 20180224195356) do
 
   create_table "specialities", force: :cascade do |t|
     t.text "title"
+    t.integer "parent"
+    t.integer "level"
   end
 
   create_table "users", force: :cascade do |t|
