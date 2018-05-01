@@ -57,6 +57,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.7'
   # gem "factory_girl", "~> 4.0"
   gem "factory_bot_rails", "~> 4.0"
+  gem 'simplecov', require: false, group: :test
+  gem 'assert_difference'
+  gem 'faker'
 end
-
-
