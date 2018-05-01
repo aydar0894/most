@@ -1,27 +1,33 @@
-h1 Listing operators
+.conatiner
+  .panel
+    h3.text-center.my-2.mb-3
+      | Управление операторами
 
-table
-  thead
-    tr
-      th First name
-      th Last name
-      th Middle name
-      th User
-      th
-      th
-      th
+    table.table.mt-5
+      thead
+        tr
+          th ID
+          th Имя
+          th Фамилия
+          th Отчество
+          th Действия
 
-  tbody
-    - @operators.each do |operator|
-      tr
-        td = operator.first_name
-        td = operator.last_name
-        td = operator.middle_name
-        td = operator.user
-        td = link_to 'Show', operator
-        td = link_to 'Edit', edit_operator_path(operator)
-        td = link_to 'Destroy', operator, data: { confirm: 'Are you sure?' }, method: :delete
+      tbody
+        - @operators.each do |operator|
+          tr
+            td = operator.id
+            td = operator.first_name
+            td = operator.last_name
+            td = operator.middle_name
+            td
+              => link_to 'Показать', operator
+              | /
+              =<> link_to 'Изменить', edit_operator_path(operator)
+              | /
+              =<> link_to 'Удалить', operator, data: { confirm: 'Вы уверены?' }, method: :delete
 
-br
+    br
 
-= link_to 'New Operator', new_operator_path
+    = link_to "Создать оператора", new_organizer_operator_path(@organizer), class: 'btn btn-primary'
+    - profile_path = (current_user.admin? ? admin_path : current_user.profile)
+    = link_to 'Назад', profile_path, class: 'btn'

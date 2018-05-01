@@ -3,7 +3,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-ruby '2.3.3'
+# ruby '2.3.3'
 gem 'rails', '~> 5.1.4'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
@@ -42,12 +42,22 @@ group :development do
   gem 'capistrano-rails-console'
   gem 'capistrano-rvm', '~> 0.1.1'
   gem 'rails_layout'
+
 end
+
 group :development, :test do
+  gem 'guard'
+  gem 'guard-rspec'
+  # gem 'guard-rubocop'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'rubocop'
+  gem 'rspec-rails', '~> 3.7'
+  # gem "factory_girl", "~> 4.0"
+  gem "factory_bot_rails", "~> 4.0"
 end
+
+

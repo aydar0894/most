@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  include Filterable
+
   belongs_to :organizer
 
   has_many :event_doctors
@@ -23,6 +25,26 @@ class Event < ApplicationRecord
   scope :currently_in_progress, -> {
     where('start < ? AND finish > ?', Time.now, Time.now)
   }
+
+
+  scope :search_query,  ->  (query) {
+    return nil if query.blank?
+
+    terms = query.mb_chars.downcase.to_s.split(/\s+/)
+    terms = terms.map { |e|
+      (e.gsub('*', '%') + '%').gsub(/%+/, '%')
+    }
+
+    num_or_conds = 2
+
+    where(
+      terms.map { |term|
+        "(LOWER(events.title) LIKE LOWER(?) OR LOWER(events.description) LIKE LOWER(?))"
+      }.join(' AND '),
+      *terms.map { |e| [e] * num_or_conds }.flatten
+    )
+  }
+  
 
   def start_time
     self.start

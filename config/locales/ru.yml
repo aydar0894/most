@@ -12,14 +12,22 @@ ru:
         middle_name: 'Отчество'
       "user[organizer]":
         company_name: 'Название организации'
+      "operator[user]":
+        first_name: 'Имя'
+        phone: 'Телефон'
   activerecord:
     attributes:
       user:
-        user:
-          email: 'Email'
-          login: 'Телефон/Email'
-          phone: 'Номер телефона'
-          password: 'Пароль'
+        email: 'Email'
+        login: 'Телефон/Email'
+        phone: 'Номер телефона'
+        password: 'Пароль'
+      operator:
+        first_name: 'Имя'
+        last_name: 'Фамилия'
+        middle_name: 'Отчество'
+      "operator[user]":
+        phone: 'Телефон'
 
     errors:
       messages:

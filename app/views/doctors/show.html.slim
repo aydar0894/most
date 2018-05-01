@@ -1,20 +1,22 @@
 p#notice = notice
 
-#profile-tabs
-  ul.nav.nav-tabs role="tablist"
-    li.nav-item
-      a.nav-link.active href='#profile-info'  data-toggle="tab"
-        | Ваш личный профиль
-    li.nav-item
-      a.nav-link href='#profile-available__events' data-toggle="tab"
-        | Запланировать мероприятие
-    li.nav-item
-      a.nav-link href='#profile-doctor__events'  data-toggle="tab"
-        | План моих мероприятий
-    li.nav-item
-      a.nav-link href='#profile-archive__events'  data-toggle="tab"
-        | Архив посещенных мероприятий
-  #profile-info.tab-pane.fade.show.active
+ul.nav.nav-tabs role="tablist"
+  li.nav-item
+    a#profile-tab.nav-link.active href='#profile' role="tab" data-toggle="tab" aria-controls="profile" aria-selected="true"
+      | Ваш личный профиль
+  li.nav-item
+    a#events-available-tab.nav-link href='#available' role="tab" data-toggle="tab"   aria-controls="available"
+      | Запланировать мероприятие
+  li.nav-item
+    a#events-registered-tab.nav-link href='#registered'  role="tab" data-toggle="tab"  aria-controls="registered"
+      | План моих мероприятий
+  li.nav-item
+    a#events-archive-tab.nav-link href='#archive'  role="tab" data-toggle="tab"  aria-controls="archive"
+      | Архив посещенных мероприятий
+
+#profile-tabs.tab-content
+  #profile.tab-pane.fade.show.active  role="tabpanel" aria-labelledby="user-cabinet"
+    
     p
       strong Фото
       = image_tag @doctor.avatar.url(:thumb)
@@ -25,10 +27,10 @@ p#notice = notice
     /   = @doctor.birth_date.to_s(:ru_date)
 
     => link_to 'Редактировать профиль', edit_doctor_path(@doctor)
-  #profile-available__events.tab-pane.fade
+  #available.tab-pane.fade  role="tabpanel" aria-labelledby="events-archive-tab"
     = render "available_events_calendar", doctor: @doctor
 
-  #profile-doctor__events.tab-pane.fade
+  #registered.tab-pane.fade role="tabpanel" aria-labelledby="events-archive-tab"
     / h2 Мои мероприятия
     table.table
       thead
@@ -62,7 +64,7 @@ p#notice = notice
                 class: "btn btn-danger",
                 method: :delete
 
-  #profile-archive__events.tab-pane.fade
+  #archive.tab-pane.fade role="tabpanel" aria-labelledby="events-archive-tab"
     table.table
       thead
         tr

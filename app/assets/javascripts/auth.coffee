@@ -6,6 +6,8 @@ is_valid_phone = (phone) ->
   pattern = /^[+]?[78]\d{10}$/
   if (pattern.test(phone))
     return true;
+  else
+    return false
 
 # Переводит телефон в нужный формат - +79XXXXXXXXX. Убирает все ненужные знаки
 format_phone = (phone) ->

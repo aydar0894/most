@@ -1,13 +1,16 @@
-p#notice = notice
+.container
+  .panel
+    h3.text-center.my-2.mb-5
+      | Профиль организатора
 
-p
-  strong User:
-  = @organizer.user.email
-p
-  strong Company name:
-  = @organizer.company_name
+    p#notice = notice
 
-=> link_to 'Edit', edit_organizer_path(@organizer)
-'|
-=< link_to 'Back', organizers_path
+    p
+      strong Почта организатора:
+      =< @organizer.user.email
+    p
+      strong Название компании:
+      =< @organizer.company_name
 
+    = link_to 'Управление операторами', organizer_operators_path(current_user.profile), class: 'btn btn-primary'
+    => link_to 'Изменение профиля', edit_organizer_path(@organizer), class: 'btn btn-primary'

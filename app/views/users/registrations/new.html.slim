@@ -38,19 +38,19 @@
             #reg-form-doctor
               = f.fields_for :doctor do |doc|
                 .form-group
-                  = doc.label :first_name, class: 'required'
+                  = doc.label :first_name, 'Имя', class: 'required'
                   = doc.text_field :first_name, class: 'form-control', placeholder: 'Введите имя'
                 .form-group
-                  = doc.label :last_name, class: 'required'
+                  = doc.label :last_name, 'Фамилия', class: 'required'
                   = doc.text_field :last_name, class: 'form-control', placeholder: 'Введите фамилия'
                 .form-group
-                  = doc.label :middle_name, class: 'required'
+                  = doc.label :middle_name, 'Отчество', class: 'required'
                   = doc.text_field :middle_name, class: 'form-control', placeholder: 'Введите отчество'
           #pills-organizer.tab-pane.fade aria-labelledby="pills-organizer-tab" role="tabpanel"
             #reg-form-organized
               = f.fields_for :organizer do |org|
                 .form-group
-                  = org.label :company_name, class: 'required'
+                  = org.label :company_name, 'Название компании', class: 'required'
                   = org.text_field :company_name, class: 'form-control', placeholder: 'Введите название организации'
 
         .info.mb-3
