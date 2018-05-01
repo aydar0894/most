@@ -1,16 +1,26 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :only_user, only: [:show]
-  before_action :only_admin_or_organizer, only: [:new, :create, :edit, :update, :destroy]  
+  before_action :only_admin_or_organizer, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_organizer, only: [:create]
   # GET /events
   # GET /events.json
-  def index   
+  def index
     @events = Event.all
+    respond_to do |format|
+      format.html { render :index }
+      format.json {
+         response = {
+           events: @events
+         }
+         render json: response
+       }
+    end
   end
 
   # GET /events/1
   # GET /events/1.json
-  def show    
+  def show
   end
 
   # GET /events/new
@@ -70,9 +80,14 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
-   
+
+    def set_organizer
+      @organizer = Organizer.find_by(user_id: current_user.id)
+    end
+
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:organizer_id, :title, :start, :finish)
+      params.require(:event).permit(:title, :start, :finish, :max_participants, :logo, :location, :description)
     end
 end

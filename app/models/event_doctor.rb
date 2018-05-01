@@ -18,7 +18,11 @@ class EventDoctor < ApplicationRecord
   private
 
   def qrcode_generate
-    t = "/tmp/tempfile#{Time.current.to_i}.png"
+    if Gem.win_platform?
+      t = "C:/temp/#{Time.current.to_i}.png"
+    else
+      t = "/tmp/tempfile#{Time.current.to_i}.png"
+    end
     RQRCode::QRCode.new("#{self.doctor.user_id}").as_png(file:t)
     file = File.open(t)
     self.qrcode = file

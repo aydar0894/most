@@ -1,5 +1,8 @@
 FactoryBot.define do
   factory :event do
-    title 'Test event'
+    title 'Title'
+    description 'Description'
+    start Date.today
+    finish Date.today
   end
 end
