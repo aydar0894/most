@@ -1,6 +1,7 @@
 class DoctorsController < ApplicationController
   before_action :set_doctor, only: [:show, :edit, :update, :destroy]
-  before_action :only_doctor, only: [:show, :edit,  :update]
+  before_action :only_doctor, only: [:edit,  :update]
+  before_action :only_doctor_admin_or_organizer, only: [:show]
   before_action :only_admin, only: [:index, :new, :create, :destroy]
 
 

@@ -4,6 +4,7 @@ class Doctor < ApplicationRecord
   has_many :event_doctors
   has_many :events, through: :event_doctors
   has_many :specialities, through: :doctor_specialities
+  validates :first_name, presence: true
 
   has_attached_file :avatar,
     styles: { thumb: "75x100#" }

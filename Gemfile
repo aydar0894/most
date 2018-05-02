@@ -53,6 +53,7 @@ group :development, :test do
   gem 'capybara', '~> 3.0'
   gem 'selenium-webdriver'
   gem 'pry-rails'
+  gem 'warden', github: 'acaron/warden', branch: 'fix-test-helpers'
   gem 'pry-rescue'
   gem 'rubocop'
   gem 'rspec-rails', '~> 3.7'
