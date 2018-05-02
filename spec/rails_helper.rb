@@ -36,15 +36,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
 
-<<<<<<< HEAD
   config.include Devise::Test::ControllerHelpers, :type => :controller
-=======
-
-  # config.include Devise::Test::ControllerHelpers, :type => :controller
-  # config.include Devise::TestHelpers, type: :controller
-  # config.include Devise::Test::IntegrationHelpers
-  # config.include Warden::Test::Helpers
->>>>>>> 9c1f502a3d1eecc8cbfb34bd06ebb614f46243ca
   # Use the following instead if you are on Devise <= 4.1.0
   # config.include Devise::TestHelpers, :type => :controller
   # RSpec Rails can automatically mix in different behaviours to your tests
