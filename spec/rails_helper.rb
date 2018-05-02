@@ -36,15 +36,11 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
 
-<<<<<<< HEAD
-  config.include Devise::Test::ControllerHelpers, :type => :controller
-=======
 
   # config.include Devise::Test::ControllerHelpers, :type => :controller
   # config.include Devise::TestHelpers, type: :controller
   # config.include Devise::Test::IntegrationHelpers
   # config.include Warden::Test::Helpers
->>>>>>> 9c1f502a3d1eecc8cbfb34bd06ebb614f46243ca
   # Use the following instead if you are on Devise <= 4.1.0
   # config.include Devise::TestHelpers, :type => :controller
   # RSpec Rails can automatically mix in different behaviours to your tests
@@ -78,4 +74,24 @@ RSpec.configure do |config|
   config.after :each do
     Warden.test_reset!
   end
+end
+
+
+# Bunch of default rails requires 
+require "spec_helper"
+
+# Load capybara api
+require "capybara/rspec"
+require "capybara/rails"
+
+# Pretty much defaults
+Capybara.default_driver = :webkit
+Capybara.javascript_driver = :webkit
+
+# Here's the meat part, we'll register our own server handler.
+require "puma"
+Capybara.register_server("puma") do |app, port|
+  server = Puma::Server.new(app)
+  server.add_tcp_listener(Capybara.server_host, port)
+  server.run
 end

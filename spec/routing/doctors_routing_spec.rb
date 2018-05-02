@@ -1,12 +1,6 @@
 require "rails_helper"
 
-<<<<<<< HEAD
-RSpec.describe DoctorsController, type: :routing do
-=======
 RSpec.describe DoctorsController do
-  describe "routing" do
->>>>>>> 9c1f502a3d1eecc8cbfb34bd06ebb614f46243ca
-
 
   describe "routing" do
     it "routes to #index" do

@@ -59,8 +59,7 @@ class OrganizersController < ApplicationController
            archive_events: @archive_events,
            participating_percentage: @participating_percentage,
            total_regs: @total_regs,
-           total_parts: @total_parts,
-           archive_events: @archive_events
+           total_parts: @total_parts
          }
          render json: response
        }
