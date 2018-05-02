@@ -19,7 +19,7 @@ class User < ApplicationRecord
 	end
 
 	def set_default_role
-		self.role ||= :user
+		self.role = :user
 	end
 
 	def name
@@ -55,9 +55,7 @@ class User < ApplicationRecord
 			return Organizer.find_by(user_id: self.id)
 		when :operator
 			return Operator.find_by(user_id: self.id)
-		when :admin
-			return self
-		when :user
+		else
 			return self
 		end
 	end

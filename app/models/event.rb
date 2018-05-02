@@ -14,18 +14,22 @@ class Event < ApplicationRecord
   validates_attachment_content_type :logo,
     content_type: /\Aimage/
 
+  validates :title, presence: true, length: { in: 6..40 }
+  validates :start, presence: true
+  validates :finish, presence: true
+  validate :finish_after_start
+
   scope :open_to_register, -> {
-    where('start > ?', Time.now)
+    where('start > ?', DateTime.current)
   }
 
   scope :close_to_register, -> {
-    where('start < ?', Time.now)
+    where('start < ?', DateTime.current)
   }
 
   scope :currently_in_progress, -> {
-    where('start < ? AND finish > ?', Time.now, Time.now)
+    where('start < ? AND finish > ?', DateTime.current, DateTime.current)
   }
-
 
   scope :search_query,  ->  (query) {
     return nil if query.blank?
@@ -44,7 +48,7 @@ class Event < ApplicationRecord
       *terms.map { |e| [e] * num_or_conds }.flatten
     )
   }
-  
+
 
   def start_time
     self.start
@@ -52,5 +56,13 @@ class Event < ApplicationRecord
 
   def end_time
     self.finish
+  end
+
+
+  private
+  def finish_after_start
+    if finish < start
+      errors.add(:finish, "must goes after start")
+    end
   end
 end
