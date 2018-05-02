@@ -48,7 +48,6 @@ end
 group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
-  gem 'faker'
   # gem 'guard-rubocop'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 3.0'
