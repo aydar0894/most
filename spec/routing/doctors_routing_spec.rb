@@ -1,18 +1,15 @@
 require "rails_helper"
 
-<<<<<<< HEAD
+
 RSpec.describe DoctorsController, type: :routing do
-=======
-RSpec.describe DoctorsController do
-  describe "routing" do
->>>>>>> 9c1f502a3d1eecc8cbfb34bd06ebb614f46243ca
+
 
 
   describe "routing" do
     it "routes to #index" do
       expect(:get => "/doctors").to route_to("doctors#index")
     end
-    
+
 
     it "routes to #new" do
       expect(:get => "/doctors/new").to route_to("doctors#new")

@@ -3,21 +3,13 @@ require 'rails_helper'
 RSpec.describe DoctorsController, type: :controller do
 
   let(:valid_attributes) {
-<<<<<<< HEAD
     FactoryBot.build(:doctor).attributes
   }
 
   let(:invalid_attributes) {
     FactoryBot.build(:doctor_invalid).attributes
-=======
 
   }
-
-  let(:invalid_attributes) {
-
->>>>>>> 9c1f502a3d1eecc8cbfb34bd06ebb614f46243ca
-  }
-
   describe "doctor actions" do
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
