@@ -1,6 +1,11 @@
 require "rails_helper"
 
+<<<<<<< HEAD
 RSpec.describe DoctorsController, type: :routing do
+=======
+RSpec.describe DoctorsController do
+  describe "routing" do
+>>>>>>> 9c1f502a3d1eecc8cbfb34bd06ebb614f46243ca
 
 
   describe "routing" do
@@ -14,6 +19,7 @@ RSpec.describe DoctorsController, type: :routing do
     end
 
     it "routes to #show" do
+      sign_in User.first
       expect(:get => "/doctors/1").to route_to("doctors#show", :id => "1")
     end
 

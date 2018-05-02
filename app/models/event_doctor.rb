@@ -17,6 +17,7 @@ class EventDoctor < ApplicationRecord
 
   private
 
+  # :nocov:
   def qrcode_generate
     if Gem.win_platform?
       t = "C:/temp/#{Time.current.to_i}.png"
@@ -30,4 +31,5 @@ class EventDoctor < ApplicationRecord
     File.delete(t)
     self.save
   end
+  # :nocov:
 end
