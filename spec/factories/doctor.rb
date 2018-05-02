@@ -12,6 +12,5 @@ FactoryBot.define do
     last_name "DocLastName"
     middle_name "DocMiddleName"
     birth_date Date.current
-
   end
 end
