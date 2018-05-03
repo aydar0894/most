@@ -31,6 +31,7 @@ class Event < ApplicationRecord
     where('start < ? AND finish > ?', DateTime.current, DateTime.current)
   }
 
+  # :nocov:
   scope :search_query,  ->  (query) {
     return nil if query.blank?
 
@@ -48,6 +49,7 @@ class Event < ApplicationRecord
       *terms.map { |e| [e] * num_or_conds }.flatten
     )
   }
+  # :nocov:
 
 
   def start_time

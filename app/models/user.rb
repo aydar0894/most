@@ -19,7 +19,7 @@ class User < ApplicationRecord
 	end
 
 	def set_default_role
-		self.role = :user
+		self.role ||= :user
 	end
 
 	def name

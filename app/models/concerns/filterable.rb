@@ -1,6 +1,7 @@
 module Filterable extend ActiveSupport::Concern
 
     module ClassMethods
+        # :nocov:
         def filter(filtering_params)
             results = self.where(nil)
             filtering_params.each do |key, value|
@@ -8,6 +9,7 @@ module Filterable extend ActiveSupport::Concern
             end
             results
         end
+        # :nocov:
     end
-    
+
 end
