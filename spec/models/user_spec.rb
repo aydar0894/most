@@ -107,11 +107,37 @@ RSpec.describe User, type: :model do
     expect(Doctor.find_by_id(doctor.id)).not_to be_present
   end
 
-  it "sets default role" do
-    doctor = FactoryBot.create(:doctor)
-    expect(doctor.user.user?).to be false
-    doctor.user.set_default_role
-    expect(doctor.user.user?).to be true
+  it "could sign in with email parameter" do
+    user = FactoryBot.create(:user)
+    conditions = {
+      email: user.email
+    }
+    found_user = User.find_for_database_authentication(conditions)
+    expect(found_user.id).to eq(user.id)
+  end
+
+  it "could sign in with phone parameter" do
+    user = FactoryBot.create(:user)
+    conditions = {
+      phone: user.phone
+    }
+    found_user = User.find_for_database_authentication(conditions)
+    expect(found_user.id).to eq(user.id)
+  end
+
+  it "could sign in with login parameter(email or phone)" do
+    user = FactoryBot.create(:user)
+    conditions = {
+      login: user.phone
+    }
+    found_user = User.find_for_database_authentication(conditions)
+    expect(found_user.id).to eq(user.id)
+
+    conditions = {
+      login: user.email
+    }
+    found_user = User.find_for_database_authentication(conditions)
+    expect(found_user.id).to eq(user.id)
   end
 
 end

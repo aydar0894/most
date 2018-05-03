@@ -35,7 +35,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if @user.operator?
       return redirect_to root_path
     else
-      return redirect_to user_session_path 
+      return redirect_to user_session_path
     end
   end
 

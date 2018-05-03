@@ -9,7 +9,7 @@ RSpec.describe DoctorsController, type: :controller do
   let(:invalid_attributes) {
     FactoryBot.build(:doctor_invalid).attributes
   }
-  
+
   describe "doctor actions" do
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
