@@ -55,6 +55,10 @@ class ApplicationController < ActionController::Base
       return redirect_to root_path if !current_user or (!current_user.admin? and !current_user.organizer? and !current_user.doctor?)
     end
 
+    def only_operator_admin_or_organizer
+      return redirect_to root_path if !current_user or (!current_user.admin? and !current_user.organizer? and !current_user.operator?)
+    end
+
     def only_admin_or_organizer
       return redirect_to root_path if !current_user or (!current_user.organizer? and !current_user.admin?)
     end
