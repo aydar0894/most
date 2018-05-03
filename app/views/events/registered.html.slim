@@ -2,7 +2,7 @@ p#notice = notice
 
 .row
   nav.col-sm-3.col-md-2.hidden-xs-down.bg-faded.sidebar
-    = render 'doctors/cabinet_sidebar', doctor: @doctor
+    = render 'doctors/cabinet_sidebar'
 
   .col-sm-9.col-md-10.col-xs-12
     #registered
@@ -20,21 +20,21 @@ p#notice = notice
           - @doctor.pending_events.each do |event|
             tr
               td
-                = @event.id
+                = event.id
               td
-                = image_tag @event.logo.url(:thumb)
+                / = image_tag event.logo.url(:thumb)
               td
-                = link_to @event.title, event
+                = link_to event.title, event
               td
                 span.badge.badge-success
-                  - if Time.now < @event.start
+                  - if Time.now < event.start
                     | Вы зарегистрированы
                   - else
                     | Мероприятие началось
               td
-                = image_tag @event.event_doctors.find_by_doctor_id(@doctor.id).qrcode.url(:thumb)
+                = image_tag event.event_doctors.find_by_doctor_id(@doctor.id).qrcode.url(:thumb)
               td
                 = link_to "Отменить регистрацию",
-                  unfollow_doctor_event_path(@doctor, @event),
+                  unfollow_doctor_event_path(@doctor, event),
                   class: "btn btn-danger",
                   method: :delete

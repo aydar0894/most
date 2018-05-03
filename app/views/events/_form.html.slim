@@ -1,6 +1,5 @@
 / .progress
 /   .progress-bar.progress-bar-striped.bg-info aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" role="progressbar" style=("width: 0%")
-
 .col-8.mx-auto.mt-5
   .form-group
     = f.label :title, 'Название', class: 'required'
@@ -34,5 +33,5 @@
     | обязательны для заполнения
 
   = f.submit "#{@event&.id.nil? ? 'Создать' : 'Сохранить'}", :class => 'btn btn-primary'
-  = link_to 'Назад', org_events_path, class: 'ml-2 btn'
+  = link_to 'Назад', current_user.profile, class: 'ml-2 btn'
   .clearfix

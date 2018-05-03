@@ -1,5 +1,5 @@
 class OrganizersController < ApplicationController
-  before_action :set_organizer, only: [:edit, :update, :show, :destroy]
+  before_action :set_organizer, only: [:edit, :update, :show, :destroy, :my_events]
   before_action :only_admin, only: [:index, :new, :create, :destroy]
   before_action :only_organizer, only: [:edit, :update, :my_events, :statistics]
 
@@ -126,7 +126,7 @@ class OrganizersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organizer
-      @organizer = Organizer.find(params[:id])
+      @organizer = Organizer.find(params[:id] || params[:organizer_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
