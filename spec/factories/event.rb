@@ -5,6 +5,7 @@ FactoryBot.define do
     description 'Description'
     start (DateTime.current - 1.day)
     finish (DateTime.current + 1.day)
+    max_participants 2
   end
 
   factory :event_invalid, class: Event do

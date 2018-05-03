@@ -33,5 +33,5 @@
     | обязательны для заполнения
 
   = f.submit "#{@event&.id.nil? ? 'Создать' : 'Сохранить'}", :class => 'btn btn-primary'
-  = link_to 'Назад', current_user.profile, class: 'ml-2 btn'
+  = link_to 'Назад', current_user.profile, class: 'ml-2 btn btn-back'
   .clearfix
