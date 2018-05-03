@@ -8,12 +8,20 @@ Rails.application.routes.draw do
     resources :events
     resources :operators, only: [:new, :create, :show, :destroy, :index]
     get 'statistics', to: 'organizers#statistics', as: :stats
+    get 'my_events', to: 'organizers#my_events', as: :my_events
   end
   resources :operators
   resources :doctors do
-    resources :events, only: [:index, :show, :register, :unfollow] do
-      match 'register' => 'doctors#register', via: :post, as: :register
-      match 'unfollow' => 'doctors#unfollow', via: :delete, as: :unfollow
+    resources :events, only: [:index, :show], param: :event_id do
+      collection do
+        get 'available' => 'events#available', as: :available
+        get 'registered' => 'events#registered', as: :registered
+        get 'archive'  => 'events#archive', as: :archive
+      end
+      member do
+        post 'register' => 'doctors#register', as: :register
+        delete 'unfollow' => 'doctors#unfollow',  as: :unfollow
+      end
     end
   end
 

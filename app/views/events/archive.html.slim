@@ -1,0 +1,41 @@
+p#notice = notice
+
+.row
+  nav.col-sm-3.col-md-2.hidden-xs-down.bg-faded.sidebar
+    = render 'doctors/cabinet_sidebar'
+
+  .col-sm-9.col-md-10.col-xs-12
+    #archive
+      table.table
+        thead
+          tr
+          th id
+          th Лого
+          th Название
+          th Статус
+          / th QR-кода
+          th Действия
+        tbody
+          - @doctor.archive_events.each do |event|
+            tr
+              td
+                = event.id
+              td
+                = image_tag event.logo.url(:thumb)
+              td
+                = link_to event.title, event
+              / td
+              /   span.badge.badge-success
+              /     | Мероприятие завершено
+              / td
+              /   = image_tag event_doctor.qrcode.url(:thumb)
+              td
+                - if Time.now > event.finish
+                  .btn.btn-danger Пройти тесты
+                    / = link_to "Пройти тесты",
+                    / # doctor_event_tests_path(@doctor, event_doctor.event),
+                    / # class: "btn btn-danger",
+                    / # method: :delete
+                - else
+                  .btn.btn-danger
+                    | Отмена невозможна

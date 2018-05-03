@@ -13,4 +13,5 @@
       =< @organizer.company_name
 
     = link_to 'Управление операторами', organizer_operators_path(current_user.profile), class: 'btn btn-primary'
-    => link_to 'Изменение профиля', edit_organizer_path(@organizer), class: 'btn btn-primary'
+    = link_to 'Изменение профиля', edit_organizer_path(@organizer), class: 'btn btn-primary'
+    => link_to 'Управление событиями', organizer_my_events_path(@organizer), class: 'btn btn-primary'

@@ -1,6 +1,6 @@
 .container
   .authform
-    = form_for @event do |f|
+    = form_for [@organizer, @event] do |f|
       h3.text-center.my-2.mb-3
         | Создание мероприятия
 
