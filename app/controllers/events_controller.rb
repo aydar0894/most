@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :only_user, only: [:show]
   before_action :only_admin_or_organizer, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_organizer, only: [:new, :create]
+  before_action :set_organizer, only: [:new, :edit, :create]
   before_action :set_doctor, only: [:archive, :available, :registered]
   # GET /events
   # GET /events.json
@@ -76,7 +76,7 @@ class EventsController < ApplicationController
   end
 
   def registered
-    
+
   end
 
   def available

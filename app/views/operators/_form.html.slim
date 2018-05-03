@@ -8,7 +8,7 @@
       = f.label :last_name, class: 'required'
       = f.text_field :last_name, class: 'form-control', placeholder: 'Введите фамилию', required: true
     .form-group
-      = f.label :middle_name
+      = f.label :middle_name, class: 'required'
       = f.text_field :middle_name, class: 'form-control', placeholder: 'Введите отчество'
 
     = f.fields_for :user do |ff|
@@ -21,4 +21,4 @@
     .actions
       = f.submit "Создать оператора", class: 'btn btn-primary'
       - profile_path = (current_user.admin? ? admin_path : current_user.profile)
-      = link_to 'Назад', profile_path, class: 'btn'
+      = link_to 'Назад', profile_path, class: 'btn btn-back'
