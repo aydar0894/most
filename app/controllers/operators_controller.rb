@@ -1,6 +1,8 @@
 class OperatorsController < ApplicationController
   before_action :set_operator, only: [:show, :edit, :update, :destroy]
-  before_action :only_operator, only: [:api_authorize_event_doctor]
+  before_action :only_operator, only: [:api_authorize_event_doctor_in, :api_authorize_event_doctor_out, :check_event_doctor_status]
+  before_action :only_admin_or_organizer, only: [:index, :new, :create, :destroy]
+  before_action :only_operator_admin_or_organizer , only: [:show, :edit, :update]
   # GET /operators
   # GET /operators.json
   def index
