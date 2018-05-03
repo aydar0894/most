@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   before_action :only_user, only: [:show]
   before_action :only_admin_or_organizer, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_organizer, only: [:create]
+  before_action :set_doctor, only: [:archive, :available, :registered]
   # GET /events
   # GET /events.json
   def index
@@ -74,6 +75,17 @@ class EventsController < ApplicationController
     end
   end
 
+  def registered
+    
+  end
+
+  def available
+  end
+
+  def archive
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -83,6 +95,10 @@ class EventsController < ApplicationController
 
     def set_organizer
       @organizer = Organizer.find_by(user_id: current_user.id)
+    end
+
+    def set_doctor
+      @doctor = Doctor.find_by(user_id: current_user.id)
     end
 
 

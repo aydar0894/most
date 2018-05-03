@@ -12,8 +12,15 @@ Rails.application.routes.draw do
   resources :operators
   resources :doctors do
     resources :events, only: [:index, :show, :register, :unfollow] do
-      match 'register' => 'doctors#register', via: :post, as: :register
-      match 'unfollow' => 'doctors#unfollow', via: :delete, as: :unfollow
+      collection do
+        get 'available' => 'events#available',  as: :available
+        get 'registered' => 'events#registered', as: :registered
+        get 'archive'  => 'events#archive', as: :archive
+      end
+      member do
+        post 'register' => 'doctors#register', as: :register
+        delete 'unfollow' => 'doctors#unfollow',  as: :unfollow
+      end
     end
   end
 

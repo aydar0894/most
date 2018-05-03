@@ -1,0 +1,13 @@
+ul#profile-tab-menu.nav.nav-pills.flex-column
+  li.nav-item
+    = link_to doctor_path(@doctor), class: "nav-link active"
+      | Ваш личный профиль
+  li.nav-item
+    = link_to available_doctor_events_path(@doctor), class: "nav-link"
+      | Запланировать мероприятие
+  li.nav-item
+    = link_to registered_doctor_events_path(@doctor), class: "nav-link"
+      | План моих мероприятий
+  li.nav-item
+    = link_to archive_doctor_events_path(@doctor), class: "nav-link"
+      | Архив посещенных мероприятий

@@ -1,100 +1,20 @@
 p#notice = notice
 
-ul.nav.nav-tabs role="tablist"
-  li.nav-item
-    a#profile-tab.nav-link.active href='#profile' role="tab" data-toggle="tab" aria-controls="profile" aria-selected="true"
-      | Ваш личный профиль
-  li.nav-item
-    a#events-available-tab.nav-link href='#available' role="tab" data-toggle="tab"   aria-controls="available"
-      | Запланировать мероприятие
-  li.nav-item
-    a#events-registered-tab.nav-link href='#registered'  role="tab" data-toggle="tab"  aria-controls="registered"
-      | План моих мероприятий
-  li.nav-item
-    a#events-archive-tab.nav-link href='#archive'  role="tab" data-toggle="tab"  aria-controls="archive"
-      | Архив посещенных мероприятий
+.row
+  nav.col-sm-3.col-md-2.hidden-xs-down.bg-faded.sidebar
+    = render 'cabinet_sidebar', doctor: @doctor
 
-#profile-tabs.tab-content
-  #profile.tab-pane.fade.show.active  role="tabpanel" aria-labelledby="user-cabinet"
+  .col-sm-9.col-md-10.col-xs-12
+    #profile 
+      
+      p
+        strong Фото
+        = image_tag @doctor.avatar.url(:thumb)
+      p
+        = @doctor.full_name
+      / p
+      /   strong Дата рождения :
+      /   = @doctor.birth_date.to_s(:ru_date)
+
+      => link_to 'Редактировать профиль', edit_doctor_path(@doctor)
     
-    p
-      strong Фото
-      = image_tag @doctor.avatar.url(:thumb)
-    p
-      = @doctor.full_name
-    / p
-    /   strong Дата рождения :
-    /   = @doctor.birth_date.to_s(:ru_date)
-
-    => link_to 'Редактировать профиль', edit_doctor_path(@doctor)
-  #available.tab-pane.fade  role="tabpanel" aria-labelledby="events-archive-tab"
-    = render "available_events_calendar", doctor: @doctor
-
-  #registered.tab-pane.fade role="tabpanel" aria-labelledby="events-archive-tab"
-    / h2 Мои мероприятия
-    table.table
-      thead
-        tr
-          th id
-          th Лого
-          th Название
-          th Статус
-          th QR-код
-          th Действия
-      tbody
-        - @doctor.pending_events.each do |event|
-          tr
-            td
-              = event.id
-            td
-              = image_tag event.logo.url(:thumb)
-            td
-              = link_to event.title, event
-            td
-              span.badge.badge-success
-                - if Time.now < event.start
-                  | Вы зарегистрированы
-                - else
-                  | Мероприятие началось
-            td
-              = image_tag event.event_doctors.find_by_doctor_id(@doctor.id).qrcode.url(:thumb)
-            td
-              = link_to "Отменить регистрацию",
-                doctor_event_unfollow_path(@doctor, event),
-                class: "btn btn-danger",
-                method: :delete
-
-  #archive.tab-pane.fade role="tabpanel" aria-labelledby="events-archive-tab"
-    table.table
-      thead
-        tr
-          th id
-          th Лого
-          th Название
-          th Статус
-          / th QR-кода
-          th Действия
-      tbody
-        - @doctor.archive_events.each do |event|
-          tr
-            td
-              = event.id
-            td
-              = image_tag event.logo.url(:thumb)
-            td
-              = link_to event.title, event
-            / td
-            /   span.badge.badge-success
-            /     | Мероприятие завершено
-            / td
-            /   = image_tag event_doctor.qrcode.url(:thumb)
-            td
-              - if Time.now > event.finish
-                .btn.btn-danger Пройти тесты
-                / = link_to "Пройти тесты",
-                  # doctor_event_tests_path(@doctor, event_doctor.event),
-                  # class: "btn btn-danger",
-                  # method: :delete
-              - else
-                .btn.btn-danger
-                  | Отмена не возможна
