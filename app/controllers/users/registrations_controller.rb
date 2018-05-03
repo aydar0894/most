@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.create(user_params)
-    abort @user.role.inspect
+    # abort @user.role.inspect
     if @user.doctor?
       @doctor = Doctor.new(doctor_params)
       @doctor.user_id = @user.id
