@@ -5,6 +5,9 @@ require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+
+require 'support/request_helper'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -38,7 +41,8 @@ RSpec.configure do |config|
 
 
   config.include Devise::Test::ControllerHelpers, :type => :controller
-
+  config.include Devise::Test::IntegrationHelpers, type: :feature
+  # config.include RequestsHelper::ApiHelpers, :type => :request
   # Use the following instead if you are on Devise <= 4.1.0
   # config.include Devise::TestHelpers, :type => :controller
   # RSpec Rails can automatically mix in different behaviours to your tests
