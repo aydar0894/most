@@ -18,4 +18,6 @@ RSpec.describe "Organizer cabinet", :type => :system do
 
     # expect(page).to have_text("Widget was successfully created.")
   end
+
+  
 end
