@@ -1,6 +1,8 @@
 class Doctor < ApplicationRecord
   belongs_to :user
 
+  belongs_to :institution
+
   has_many :event_doctors
   has_many :events, through: :event_doctors
   has_many :specialities, through: :doctor_specialities

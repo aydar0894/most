@@ -150,6 +150,7 @@ GEM
     ffi (1.9.23)
     ffi (1.9.23-x64-mingw32)
     formatador (0.2.5)
+    geocoder (1.4.9)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     guard (2.14.2)
@@ -411,6 +412,7 @@ DEPENDENCIES
   devise-i18n
   factory_bot_rails (~> 4.0)
   faker
+  geocoder (~> 1.4.9)
   guard
   guard-rspec
   high_voltage
@@ -443,4 +445,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
