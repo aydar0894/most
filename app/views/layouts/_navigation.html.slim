@@ -26,7 +26,23 @@ nav.navbar.navbar-expand-md.navbar-landing
             = link_to profile_path, class: 'nav-link'
               = image_tag 'user_auth.png', class: 'user_auth_icon'
               = current_user.name
-          li.nav-item
+          li.nav-item style="margin-top: 2px;"
             = link_to destroy_user_session_path, method: :delete, class: 'nav-link'
               | |
               span.ml-3 Выйти
+        - if current_user
+          ul.navbar-nav
+            li.nav-item.pull-right.balance-nav-item.ml-2 style="margin-top: 0px"
+              a.nav-link.balance-nav-link href="#"
+                | Баланс:
+                strong.ml-1
+                  | 1500 руб.
+/ nav.navbar.navbar-expand-md.navbar-landing
+/   .container-fluid.align-items-start
+/     .collapse.navbar-collapse
+/       ul.navbar-nav
+/         li.nav-item.pull-right.balance-nav-item.ml-2 style="margin-top: 0px"
+/           a.nav-link.balance-nav-link href="#"
+/             | Баланс:
+/             strong.ml-1
+/               | 1500 руб.

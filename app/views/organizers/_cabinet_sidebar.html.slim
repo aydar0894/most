@@ -1,0 +1,25 @@
+ul#profile-tab-menu.nav.nav-pills.flex-column
+  li.nav-item
+    = link_to current_user.profile, class: "nav-link #{@menu_route_type == :profile ? 'active' : ''}", id: 'doctor-profile'
+      | Ваш личный профиль
+  li.nav-item
+    = link_to new_organizer_event_path(current_user.id), class: "nav-link #{@menu_route_type == :create_event ? 'active' : ''}", id: 'doctor-available-events'
+      | Создать мероприятие
+  li.nav-item
+    = link_to organizer_current_events_path(current_user.profile), class: "nav-link #{@menu_route_type == :current_events ? 'active' : ''}", id: 'doctor-available-events'
+      | Идущие мероприятия
+  li.nav-item
+    = link_to organizer_upcoming_events_path(current_user.profile), class: "nav-link #{@menu_route_type == :upcoming_events ? 'active' : ''}", id: 'doctor-available-events'
+      | Предстоящие мероприятия
+  li.nav-item
+    = link_to organizer_archive_events_path(current_user.profile), class: "nav-link #{@menu_route_type == :archive_events ? 'active' : ''}", id: 'doctor-available-events'
+      | Прошедшие мероприятия
+  li.nav-item
+    = link_to organizer_stats_path(current_user.id), class: "nav-link #{@menu_route_type == :statistics ? 'active' : ''}", id: 'doctor-available-events'
+      | Статистика
+  / li.nav-item
+  /   = link_to registered_doctor_events_path(@doctor), class: "nav-link #{@menu_route_type == :registered ? 'active' : ''}", id: 'doctor-registered-events'
+  /     | Идущие мероприятия
+  / li.nav-item
+  /   = link_to archive_doctor_events_path(@doctor), class: "nav-link #{@menu_route_type == :archive ? 'active' : ''}", id: 'doctor-archive-events'
+  /     | Архив мероприятий

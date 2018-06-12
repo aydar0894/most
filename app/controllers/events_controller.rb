@@ -26,20 +26,23 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
+    @menu_route_type = :create_event
+
     @event = Event.new
   end
 
   # GET /events/1/edit
   def edit
+    @menu_route_type = :create_event
+
     return redirect_to root_path if Event.find(params[:id]).organizer_id != @organizer.id
   end
 
   # POST /events
   # POST /events.json
   def create
-
     @event = Event.new(event_params)
-    @event.organizer_id = @organizer.id
+    @event.organizer_id = params[:organizer_id]
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -76,14 +79,15 @@ class EventsController < ApplicationController
   end
 
   def registered
-
+    @menu_route_type = :registered
   end
 
   def available
+    @menu_route_type = :available
   end
 
   def archive
-
+    @menu_route_type = :archive
   end
 
   private

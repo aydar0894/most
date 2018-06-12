@@ -1,0 +1,101 @@
+/ = link_to 'Создать мероприятие', new_organizer_event_path(current_user.id), class: 'btn btn-primary'
+/ =< link_to 'Статистика', organizer_stats_path(current_user.id), class: 'btn'
+
+table.table
+  thead
+    tr
+      th Название
+      th Время начала
+      th Время окончания
+      th
+      th
+      th
+
+  tbody
+    - @events.each do |event|
+      tr
+        td = event.title
+        td = event.start
+        td = event.finish
+        td = link_to 'Show', event
+        td = link_to 'Edit', edit_organizer_event_path(@organizer,event)
+        td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+
+/ #event-tabs.mt-3
+/   ul.nav.nav-tabs.rows role="tablist"
+/     li.nav-item.col-3
+/       a.nav-link.active href='#all-events'  data-toggle="tab"
+/         | Все мероприятия
+/     li.nav-item.col-3
+/       a.nav-link href='#ongoing-events' data-toggle="tab"
+/         | Идущие мероприятия
+/     li.nav-item.col-3
+/       a.nav-link href='#scheduled-events'  data-toggle="tab"
+/         | Запланированные мероприятия
+/     li.nav-item.col-3
+/       a.nav-link href='#archive-events'  data-toggle="tab"
+/         | Архив мероприятий
+/
+/   .tab-content
+/     #all-events.tab-pane.fade.show.active
+/
+/     #ongoing-events.tab-pane.fade
+/       table.table
+/         thead
+/           tr
+/             th Название
+/             th Время начала
+/             th Время окончания
+/             th
+/             th
+/             th
+/
+/         tbody
+/           - @current_events.each do |event|
+/             tr
+/               td = event.title
+/               td = event.start
+/               td = event.finish
+/               td = link_to 'Show', event
+/               td = link_to 'Edit', edit_organizer_event_path(@organizer,event)
+/               td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+/     #scheduled-events.tab-pane.fade
+/       table.table
+/         thead
+/           tr
+/             th Название
+/             th Время начала
+/             th Время окончания
+/             th
+/             th
+/             th
+/
+/         tbody
+/           - @upcoming_events.each do |event|
+/             tr
+/               td = event.title
+/               td = event.start
+/               td = event.finish
+/               td = link_to 'Show', event
+/               td = link_to 'Edit', edit_organizer_event_path(@organizer,event)
+/               td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+/     #archive-events.tab-pane.fade
+/       table.table
+/         thead
+/           tr
+/             th Название
+/             th Время начала
+/             th Время окончания
+/             th
+/             th
+/             th
+/
+/         tbody
+/           - @archive_events.each do |event|
+/             tr
+/               td = event.title
+/               td = event.start
+/               td = event.finish
+/               td = link_to 'Show', event
+/               td = link_to 'Edit', edit_organizer_event_path(@organizer,event)
+/               td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete

@@ -1,24 +1,16 @@
-p#notice = notice
-
-.row
-  nav.col-sm-3.col-md-2.hidden-xs-down.bg-faded.sidebar
-    = render 'doctors/cabinet_sidebar', doctor: @doctor
-
-  .col-sm-9.col-md-10.col-xs-12
-    #available
-      = month_calendar events: @doctor.events_available do |date, events|
-        = date
-        - events.each do |event|
-          div.event-card
-            / = event.id
-            / = image_tag event.logo.url(:thumb)
-            = link_to event.title, event, class: "event-link"
-            / span.badge.badge-default
-            /   | Доступно для регистрации
-            - if (date.mjd - event.start_time.to_date.mjd).abs == 0 
-              = link_to 'Зарегистрироваться',
-                register_doctor_event_path(@doctor, event),
-                class: "btn btn-sm btn-success event-register" ,
-                id: "event-link-#{event.id}",
-                method: :post
-
+#available
+  = month_calendar events: @doctor.events_available do |date, events|
+    = date
+    - events.each do |event|
+      div.event-card
+        / = event.id
+        / = image_tag event.logo.url(:thumb)
+        = link_to event.title, event, class: "event-link"
+        / span.badge.badge-default
+        /   | Доступно для регистрации
+        - if (date.mjd - event.start_time.to_date.mjd).abs == 0
+          = link_to 'Зарегистрироваться',
+            register_doctor_event_path(@doctor, event),
+            class: "btn btn-sm btn-success event-register" ,
+            id: "event-link-#{event.id}",
+            method: :post

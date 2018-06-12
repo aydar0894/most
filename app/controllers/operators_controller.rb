@@ -6,6 +6,8 @@ class OperatorsController < ApplicationController
   # GET /operators
   # GET /operators.json
   def index
+    @menu_route_type = :operators
+
     if params["organizer_id"]
       @organizer = Organizer.find(params["organizer_id"])
       @operators = Operator.where(organizer_id: params["organizer_id"])
@@ -54,15 +56,18 @@ class OperatorsController < ApplicationController
   # GET /operators/new
   def new
     @operator = Operator.new
+    @menu_route_type = :operators
   end
 
   # GET /operators/1/edit
   def edit
+    @menu_route_type = :operators
   end
 
   # POST /operators
   # POST /operators.json
   def create
+    @menu_route_type = :operators
     generated_password = Devise.friendly_token.first(8)
     pp generated_password
     @user = User.new(user_params)

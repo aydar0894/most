@@ -1,19 +1,27 @@
-p#notice = notice
+#event
+  .row
+    .col-4.text-center
+      .mb-1 Логотип
+      = image_tag @event.logo, class: 'user-avatar'
+      / = image_tag @doctor.avatar.url(:thumb)
 
-p
-  strong Organizer:
-  = @event.organizer.company_name
-p
-  strong Title:
-  = @event.title
-p
-  strong Start:
-  = @event.start
-p
-  strong Finish:
-  = @event.finish
+    .col-6
+      p.organizer.mt-4
+        | Организатор -
+        =< @event.organizer.company_name
+      p.event_start
+        | Дата начала -
+        =< @event.start
+      p.event_start
+        | Дата начала -
+        =< @event.finish
+      p.location
+        | Адрес -
+        =< @event.location
 
-/ - if current_user.role ==
-/   => link_to 'Редактировать', edit_organizer_event_path(@event.organizer, @event)
-'|
-=< link_to 'Вернуться к мероприятиям', events_path
+  .career.mt-4
+    .title
+      strong Описание
+
+    .description
+      = @event.description

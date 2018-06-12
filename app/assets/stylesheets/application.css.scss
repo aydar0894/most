@@ -14,3 +14,83 @@
  *= require simple_calendar
  *= require_self
  */
+
+.content {
+   background-color: #e0eefd;
+   padding: 40px;
+ }
+
+.simple-calendar {
+
+  background-color: #eee;
+  padding-top: 15px;
+
+  .table {
+    table-layout: fixed;
+    margin-bottom: 0 !important;
+
+    tbody {
+      tr {
+        td:hover {
+          cursor: pointer;
+        }
+        td {
+          padding: 2px 6px;
+          position: relative;
+          border: 1px solid #e0e0e0;
+          height: 70px;
+          overflow: hidden;
+
+          .calendar-day {
+
+          }
+
+          .events-day-list {
+            color: #7e7e7e;
+
+            li:before {
+             content: '-';
+            }
+          }
+
+          &:hover {
+            cursor: normal;
+            background-color: #f7f7f7;
+          }
+
+          &:first-child {border-left: 0;}
+          &:last-child {border-right: 0;}
+        }
+
+        &:first-child td {
+          border-top: 0;
+        }
+        &:last-child td {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+ul.pager {
+  padding-left: 0;
+
+  li {
+    list-style: none;
+    text-align: center;
+
+    .date {
+      font-size: 15px;
+      color: #000;
+    }
+  }
+}
+
+.calendar-wrap {
+  margin: -20px;
+}
+
+.form-image-thumb {
+  width: 100px;
+}

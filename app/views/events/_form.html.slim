@@ -20,7 +20,12 @@
     = f.text_area :location, class: 'form-control', placeholder: 'Введите название'
   .form-group
     = f.label :logo, 'Логотип'
-    = f.file_field :logo,class: 'form-control'
+    br
+    = f.file_field :logo,class: 'form-control d-none', id: 'event-file-field'
+    = image_tag @event.logo.url(:thumb), class: 'form-image-thumb'
+    br
+    label.btn.btn-default.mt-1 for="event-file-field"
+      | Выбрать
   .form-group
     = f.label :max_participants, 'Максимальное число участников', class: 'required'
     = f.number_field :max_participants,class: 'form-control'
@@ -33,5 +38,5 @@
     | обязательны для заполнения
 
   = f.submit "#{@event&.id.nil? ? 'Создать' : 'Сохранить'}", :class => 'btn btn-primary'
-  = link_to 'Назад', current_user.profile, class: 'ml-2 btn btn-back'
+  / = link_to 'Назад', current_user.profile, class: 'ml-2 btn btn-back'
   .clearfix

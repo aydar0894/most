@@ -11,8 +11,16 @@ html
   body
     header
       == render 'layouts/navigation'
-    main[role="main"]
+    main.container[role="main"]
       / == render 'layouts/messages'
-      == yield
+      .row
+        nav.col-sm-3.col-md-2.pr-0.hidden-xs-down.bg-faded.sidebar
+          - if current_user&.doctor?
+            = render 'doctors/cabinet_sidebar', doctor: current_user.profile
+          - elsif current_user&.organizer?
+            = render 'organizers/cabinet_sidebar', organizer: current_user.profile
+
+        .content.col-9
+          == yield
 
     = render 'layouts/footer'
