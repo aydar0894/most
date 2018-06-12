@@ -21,4 +21,4 @@
     .actions
       = f.submit "Создать оператора", class: 'btn btn-primary'
       - profile_path = (current_user.admin? ? admin_path : current_user.profile)
-      = link_to 'Назад', profile_path, class: 'btn btn-back'
+      = link_to 'Назад', organizer_operators_path(current_user.profile), class: 'btn btn-back'

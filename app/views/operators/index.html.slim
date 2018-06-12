@@ -29,5 +29,5 @@
     br
 
     = link_to "Создать оператора", new_organizer_operator_path(@organizer), class: 'btn btn-primary'
-    - profile_path = (current_user.admin? ? admin_path : current_user.profile)
-    = link_to 'Назад', profile_path, class: 'btn'
+    / - profile_path = (current_user.admin? ? admin_path : current_user.profile)
+    / = link_to 'Назад', profile_path, class: 'btn'

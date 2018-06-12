@@ -20,6 +20,8 @@ class DoctorsController < ApplicationController
 
 
   def show
+    @menu_route_type = :profile
+
     respond_to do |format|
       format.html
       format.json

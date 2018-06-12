@@ -12,10 +12,16 @@
       = f.text_field :middle_name, class: 'form-control'
     .form-group
       = f.label :avatar, 'Аватар'
-      = f.file_field :avatar, class: 'form-control'
+      br
+      = f.file_field :avatar, class: 'form-control d-none', id: 'avatar-file-field'
+      = image_tag @doctor.avatar.url(:thumb), class: "form-image-thumb"
+      br
+      label.btn.btn-default.mt-1 for="avatar-file-field"
+        | Выбрать
     .form-group
       = f.label :birth_date, 'Дата рождения'
-      = f.datetime_select :birth_date, class: 'form-control'
+      br
+      = f.date_select :birth_date, class: 'form-control'
 
     .actions
       = f.submit 'Сохранить', class: 'btn btn-primary'

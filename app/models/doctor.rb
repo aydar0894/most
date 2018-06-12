@@ -6,8 +6,8 @@ class Doctor < ApplicationRecord
   has_many :specialities, through: :doctor_specialities
   validates :first_name, presence: true
 
-  has_attached_file :avatar,
-    styles: { thumb: "75x100#" }
+  has_attached_file :avatar, styles: { high: "805x575#", medium: "387x277#", thumb: "200x200#" }, default_url: "missing_avatar.png"
+    # default_url: ":style/missing_avatar.jpg"
   validates_attachment_content_type :avatar,
     content_type: /\Aimage/
 

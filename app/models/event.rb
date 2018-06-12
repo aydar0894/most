@@ -9,8 +9,8 @@ class Event < ApplicationRecord
   has_many :event_operators
   has_many :operators, through: :event_operators
 
-  has_attached_file :logo,
-    styles: { thumb: "100x100#" }
+  has_attached_file :logo, styles: { high: "805x575#", medium: "387x277#", thumb: "200x200#" }, default_url: "missing_event.jpg"
+    # default_url: ":style/missing_avatar.jpg"
   validates_attachment_content_type :logo,
     content_type: /\Aimage/
 

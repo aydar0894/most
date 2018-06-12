@@ -1,17 +1,28 @@
-.container
-  .panel
-    h3.text-center.my-2.mb-5
-      | Профиль организатора
+#profile
 
-    p#notice = notice
+  .row
+    .col-4.text-center
+      .mb-1 Логотип
+      = image_tag @organizer.logo, class: 'user-avatar'
 
-    p
-      strong Почта организатора:
-      =< @organizer.user.email
-    p
-      strong Название компании:
-      =< @organizer.company_name
+    .col-6
+      p.name.mt-4
+        = @organizer.user.email
+      p.phone
+        = @organizer.company_name
 
-    = link_to 'Управление операторами', organizer_operators_path(current_user.profile), class: 'btn btn-primary'
-    = link_to 'Изменение профиля', edit_organizer_path(@organizer), class: 'btn btn-primary'
-    => link_to 'Управление событиями', organizer_my_events_path(@organizer), class: 'btn btn-primary'
+      = link_to 'Редактировать', edit_organizer_path(@organizer), class: 'btn btn-primary'
+
+  .career.mt-4
+    .title
+      strong Данные
+
+    .about
+      | Данные
+
+  .career.mt-3
+    .title
+      strong Данные
+
+    .about
+      | Данные

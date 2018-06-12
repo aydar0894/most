@@ -70,3 +70,30 @@ nav.navbar.navbar-landing {
     &.btn-primary { background-color: #117298; border-color: #106a8c; color: #fff; }
   }
 }
+
+.nav.nav-pills#profile-tab-menu {
+  .nav-item {
+    .nav-link {
+      border-radius: 0;
+      padding: 20px;
+      border-bottom: 1px solid #ccc;
+      color: #222;
+      background-color: #eee;
+    }
+    .nav-link.active {
+      // #2273dd
+      // background-color: #e0eefd;
+      background: #2273dd; /* Old browsers */
+      background: -moz-linear-gradient(left, #bfddff 0%, #e0eefd 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(left, #bfddff 0%, #e0eefd 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to right, #bfddff 0%, #e0eefd 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      color: #222;
+    }
+
+    &:last-child {
+      .nav-link {
+        border-bottom: 0;
+      }
+    }
+  }
+}
