@@ -3,7 +3,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-# ruby '2.3.3'
+
 gem 'rails', '~> 5.1.4'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
@@ -49,7 +49,6 @@ end
 group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
-  # gem 'guard-rubocop'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 3.0'
   gem 'selenium-webdriver'
@@ -59,9 +58,8 @@ group :development, :test do
   gem 'rubocop'
   gem 'rspec-rails', '~> 3.7'
   gem 'chromedriver-helper', '~> 1.1.0'
-  # gem "factory_girl", "~> 4.0"
   gem "factory_bot_rails", "~> 4.0"
-  gem 'simplecov', require: false, group: :test
+  gem 'simplecov', require: false
   gem 'assert_difference'
   gem 'faker'
 end
