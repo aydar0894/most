@@ -1,19 +1,29 @@
-p#notice = notice
+#profile
 
-.row
-  nav.col-sm-3.col-md-2.hidden-xs-down.bg-faded.sidebar
-    = render 'cabinet_sidebar', doctor: @doctor
+  .row
+    .col-4.text-center
+      .mb-1 Фото
+      = image_tag @doctor.avatar, class: 'user-avatar'
+      / = image_tag @doctor.avatar.url(:thumb)
 
-  .col-sm-9.col-md-10.col-xs-12
-    #profile
-
-      p
-        strong Фото
-        / = image_tag @doctor.avatar.url(:thumb)
-      p.name
+    .col-6
+      p.name.mt-4
         = @doctor.full_name
-      / p
-      /   strong Дата рождения :
-      /   = @doctor.birth_date.to_s(:ru_date)
+      p.phone
+        = @doctor.user.phone
 
-      => link_to 'Редактировать профиль', edit_doctor_path(@doctor), id: 'doctor-edit-profile'
+      => link_to 'Редактировать', edit_doctor_path(@doctor), id: 'doctor-edit-profile'
+
+  .career.mt-4
+    .title
+      strong Карьера
+
+    .about
+      | Тут будет информация о карьере доктора
+
+  .career.mt-3
+    .title
+      strong О себе
+
+    .about
+      | Тут будет информация о докторе

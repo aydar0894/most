@@ -10,7 +10,7 @@
         /   = f.label :email, class: 'required'
         /   = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Введите email'
         .form-group
-          = f.label :login, 'Телефон', class: 'required'
+          = f.label :login, 'Телефон', class: 'required', autocomplete: false
           / .input-group
           /   .input-group-prepend
           /     .input-group-text
@@ -28,7 +28,9 @@
           .actions
             = f.submit "Войти", class: 'btn btn-primary'
 
-= render "users/shared/links"
+        = link_to "Регистрация", new_registration_path(resource_name), class: 'btn btn-primary', id: 'reg-button'
+
+/ = render "users/shared/links"
 
 javascript:
   window.check_phone($('#login-input').val());

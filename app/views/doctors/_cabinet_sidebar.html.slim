@@ -1,13 +1,13 @@
 ul#profile-tab-menu.nav.nav-pills.flex-column
   li.nav-item
-    = link_to doctor_path(@doctor), class: "nav-link active", id: 'doctor-profile'
+    = link_to doctor_path(@doctor), class: "nav-link #{@menu_route_type == :profile ? 'active' : ''}", id: 'doctor-profile'
       | Ваш личный профиль
   li.nav-item
-    = link_to available_doctor_events_path(@doctor), class: "nav-link", id: 'doctor-available-events'
+    = link_to available_doctor_events_path(@doctor), class: "nav-link #{@menu_route_type == :available ? 'active' : ''}", id: 'doctor-available-events'
       | Запланировать мероприятие
   li.nav-item
-    = link_to registered_doctor_events_path(@doctor), class: "nav-link", id: 'doctor-registered-events'
+    = link_to registered_doctor_events_path(@doctor), class: "nav-link #{@menu_route_type == :registered ? 'active' : ''}", id: 'doctor-registered-events'
       | План моих мероприятий
   li.nav-item
-    = link_to archive_doctor_events_path(@doctor), class: "nav-link", id: 'doctor-archive-events'
+    = link_to archive_doctor_events_path(@doctor), class: "nav-link #{@menu_route_type == :archive ? 'active' : ''}", id: 'doctor-archive-events'
       | Архив посещенных мероприятий

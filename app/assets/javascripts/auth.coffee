@@ -26,12 +26,15 @@ window.check_phone = (phone) ->
       console.log(response);
       if (response.user_exists == true)
         $('#sign-in-form').removeClass('d-none')
+        $('#reg-button').addClass('d-none')
       else
         $('#sign-in-form').addClass('d-none')
+        $('#reg-button').removeClass('d-none')
 
     $.get '/user_exists', { login: phone }, callback
   else
     $('#sign-in-form').addClass('d-none')
+    $('#reg-button').removeClass('d-none')
 
 $(document).on 'keyup', '#login-input', () ->
   phone = format_phone($(this).val());
