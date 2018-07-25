@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180531154630) do
+ActiveRecord::Schema.define(version: 20180725085815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,12 +91,10 @@ ActiveRecord::Schema.define(version: 20180531154630) do
 
   create_table "institutions", force: :cascade do |t|
     t.string "name"
-    t.float "lat"
-    t.float "lng"
     t.string "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["lat", "lng"], name: "index_institutions_on_lat_and_lng"
+    t.float "latitude"
+    t.float "longitude"
+    t.index ["latitude", "longitude"], name: "index_institutions_on_latitude_and_longitude"
   end
 
   create_table "operators", force: :cascade do |t|
