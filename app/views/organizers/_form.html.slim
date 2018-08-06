@@ -9,6 +9,9 @@
       = f.label :company_name, 'Название компании', class: 'reqired'
       = f.text_area :company_name, class: 'form-control', required: true
 
+    .form-group
+      = 
+
     .actions
       = f.submit 'Сохранить', class: 'btn btn-primary'
       - profile_path = (current_user.admin? ? admin_path : current_user.profile)
