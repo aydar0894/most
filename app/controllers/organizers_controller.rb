@@ -14,6 +14,8 @@ class OrganizersController < ApplicationController
   end
 
   def my_events
+    @menu_route_type = :events
+
     @all_events = Event.where(organizer_id: Organizer.find_by(user_id: current_user.id).id)
     current_date = DateTime.current
     @current_events = @all_events.where('start <= ? AND finish >= ?', current_date, current_date)
@@ -33,7 +35,46 @@ class OrganizersController < ApplicationController
     end
   end
 
+  def all_events
+    @menu_route_type = :events
+
+    @events = Event.where(organizer_id: Organizer.find_by(user_id: current_user.id).id)
+  end
+
+  def current_events
+    @menu_route_type = :current_events
+
+    @all_events = Event.where(organizer_id: Organizer.find_by(user_id: current_user.id).id)
+    current_date = DateTime.current
+    @events = @all_events.where('start <= ? AND finish >= ?', current_date, current_date)
+
+    render 'all_events'
+  end
+
+  def upcoming_events
+    @menu_route_type = :upcoming_events
+
+    @all_events = Event.where(organizer_id: Organizer.find_by(user_id: current_user.id).id)
+    current_date = DateTime.current
+    @events = @all_events.where('start >= ?', current_date)
+
+    render 'all_events'
+  end
+
+  def archive_events
+    @menu_route_type = :archive_events
+
+    @all_events = Event.where(organizer_id: Organizer.find_by(user_id: current_user.id).id)
+    current_date = DateTime.current
+    @events = @all_events.where('finish <= ?', current_date)
+
+    render 'all_events'
+  end
+
   def statistics
+    @menu_route_type = :statistics
+
+    @organizer = current_user.profile
     current_date = DateTime.current
     @all_events = Event.where(organizer_id: Organizer.find_by(user_id: current_user.id).id)
     @archive_events = @all_events.where('finish <= ?', current_date)
@@ -70,17 +111,20 @@ class OrganizersController < ApplicationController
 
   # GET /organizers/1
   # GET /organizers/1.json
-  # def show
-
-  # end
+  def show
+    @menu_route_type = :profile
+  end
 
   # GET /organizers/new
   def new
+    @menu_route_type = :events
+
     @organizer = Organizer.new
   end
 
   # GET /organizers/1/edit
   def edit
+    @menu_route_type = :events
   end
 
   # POST /organizers
@@ -131,6 +175,6 @@ class OrganizersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organizer_params
-      params.require(:organizer).permit(:user_id, :company_name)
+      params.require(:organizer).permit(:user_id, :company_name, :logo)
     end
 end

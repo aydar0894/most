@@ -1,18 +1,19 @@
 = form_for @organizer do |f|
 
-  .col-8.mx-auto.mt-5
-    / .field
-    /   = f.label :user
-    /   = f.text_field :user
+  .form-group
+    = f.label :company_name, 'Название компании', class: 'reqired'
+    = f.text_area :company_name, class: 'form-control', required: true
 
-    .form-group
-      = f.label :company_name, 'Название компании', class: 'reqired'
-      = f.text_area :company_name, class: 'form-control', required: true
+  .form-group
+    = f.label :avatar, 'Логотип'
+    br
+    = f.file_field :logo, class: 'form-control d-none', id: 'avatar-file-field'
+    = image_tag @organizer.logo.url(:thumb), class: "form-image-thumb"
+    br
+    label.btn.btn-default.mt-1 for="avatar-file-field"
+      | Выбрать
 
-    .form-group
-      = 
-
-    .actions
-      = f.submit 'Сохранить', class: 'btn btn-primary'
-      - profile_path = (current_user.admin? ? admin_path : current_user.profile)
-      = link_to 'Назад', profile_path, class: 'btn btn-back'
+  .actions
+    = f.submit 'Сохранить', class: 'btn btn-primary'
+    - profile_path = (current_user.admin? ? admin_path : current_user.profile)
+    = link_to 'Назад', profile_path, class: 'btn btn-back'

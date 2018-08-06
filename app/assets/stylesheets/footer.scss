@@ -1,4 +1,5 @@
 footer#footer {
+  margin-top: 50px;
   background-color: #eee;
   padding: 40px;
   // height: 500px;
@@ -9,14 +10,14 @@ footer#footer {
   }
 
   .title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     color: #222;
     margin-bottom: 20px;
   }
 
   .menu {
-    padding-bottom: 150px;
+    padding-bottom: 50px;
 
     ul {
       list-style: none;
@@ -30,10 +31,10 @@ footer#footer {
   }
 
   .info {
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     a {
       margin-right: 40px;
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 300;
     }
   }
@@ -48,6 +49,7 @@ footer#footer {
 
   a {
     color: #222;
+    font-size: 14px;
 
     &:hover { color: #777; text-decoration: none; }
     &:active { color: #222; }

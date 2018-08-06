@@ -1,18 +1,18 @@
 = link_to 'Создать мероприятие', new_organizer_event_path(current_user.id), class: 'btn btn-primary'
-=< link_to 'Статистика', organizer_stats_path(current_user.id), class: 'btn'
+/ =< link_to 'Статистика', organizer_stats_path(current_user.id), class: 'btn'
 
 #event-tabs.mt-3
-  ul.nav.nav-tabs role="tablist"
-    li.nav-item
+  ul.nav.nav-tabs.rows role="tablist"
+    li.nav-item.col-3
       a.nav-link.active href='#all-events'  data-toggle="tab"
         | Все мероприятия
-    li.nav-item
+    li.nav-item.col-3
       a.nav-link href='#ongoing-events' data-toggle="tab"
         | Идущие мероприятия
-    li.nav-item
+    li.nav-item.col-3
       a.nav-link href='#scheduled-events'  data-toggle="tab"
         | Запланированные мероприятия
-    li.nav-item
+    li.nav-item.col-3
       a.nav-link href='#archive-events'  data-toggle="tab"
         | Архив мероприятий
 

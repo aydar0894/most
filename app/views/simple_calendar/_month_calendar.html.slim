@@ -1,0 +1,29 @@
+.simple-calendar
+  / = link_to "Previous", start_date: date_range.first - 1.day
+  / = I18n.t("date.month_names")[start_date.month]
+  / = start_date.year
+  / = link_to "Next", start_date: date_range.last + 1.day
+  ul.pager.row
+    li.previous.col-4
+      = link_to "&larr; Назад".html_safe, start_date: date_range.first - 1.day
+    li.date.col-4
+      = I18n.t("date.month_names")[start_date.month]
+      =< start_date.year
+    li.next.col-4
+      = link_to "Вперед &rarr;".html_safe, start_date: date_range.last + 1.day
+  table.table
+    thead
+      tr
+        - date_range.slice(0, 7).each do |day|
+          th.text-center
+            = I18n.t("date.abbr_day_names")[day.wday]
+    tbody
+      - date_range.each_slice(7) do |week|
+        tr
+          - week.each do |day|
+            = content_tag :td, class: calendar.td_classes_for(day) do
+              - if defined?(Haml) && block_is_haml?(block)
+                - capture_haml do
+                  - block.call day, sorted_events.fetch(day, [])
+              - else
+                - block.call day, sorted_events.fetch(day, [])

@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     resources :operators, only: [:new, :create, :show, :destroy, :index]
     get 'statistics', to: 'organizers#statistics', as: :stats
     get 'my_events', to: 'organizers#my_events', as: :my_events
+    get 'all_events', to: 'organizers#all_events', as: :all_events
+    get 'current_events', to: 'organizers#current_events', as: :current_events
+    get 'upcoming_events', to: 'organizers#upcoming_events', as: :upcoming_events
+    get 'archive_events', to: 'organizers#archive_events', as: :archive_events
   end
   resources :operators
   resources :doctors do

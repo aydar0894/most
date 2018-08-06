@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.describe EventsController, type: :routing do
+  before(:each) do
+    @organizer = FactoryBot.create(:organizer)
+  end
+
   describe "routing" do
 
     it "routes to #index" do
@@ -8,7 +12,7 @@ RSpec.describe EventsController, type: :routing do
     end
 
     it "routes to #new" do
-      expect(:get => "/events/new").to route_to("events#new")
+      expect(:get => "organizers/#{@organizer.id}/events/new").to route_to("events#new", organizer_id: @organizer_id)
     end
 
     it "routes to #show" do

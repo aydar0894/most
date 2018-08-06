@@ -60,14 +60,18 @@ div.bhoechie-tab-container{
     border-top: 13px solid transparent;
     border-left: 10px solid #5A55A3;
   }
-  
+
   div.bhoechie-tab-content{
     background-color: #ffffff;
     /* border: 1px solid #eeeeee; */
     padding-left: 20px;
     padding-top: 10px;
   }
-  
+
   div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     display: none;
+  }
+
+  .user-avatar {
+    width: 100%;
   }

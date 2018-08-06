@@ -117,6 +117,10 @@ ActiveRecord::Schema.define(version: 20180806110346) do
     t.text "company_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "logo_file_name"
+    t.string "logo_content_type"
+    t.integer "logo_file_size"
+    t.datetime "logo_updated_at"
     t.index ["user_id"], name: "index_organizers_on_user_id"
   end
 
