@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180725085815) do
+ActiveRecord::Schema.define(version: 20180806110346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,13 +79,16 @@ ActiveRecord::Schema.define(version: 20180725085815) do
     t.datetime "updated_at", null: false
     t.integer "reggistrations_count", default: 0
     t.integer "participants_count", default: 0
-    t.text "location"
     t.text "description"
     t.integer "max_participants", default: 0
     t.string "logo_file_name"
     t.string "logo_content_type"
     t.integer "logo_file_size"
     t.datetime "logo_updated_at"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "address"
+    t.index ["latitude", "longitude"], name: "index_events_on_latitude_and_longitude"
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
   end
 

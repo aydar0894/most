@@ -1,9 +1,8 @@
 class Event < ApplicationRecord
   include Filterable
 
-
-  geocoded_by :address, :lattitude => :lat, :longitude => :lng
-  after_validation :geocode, :if => :address_changed?
+  geocoded_by :address
+  after_validation :geocode, if: ->(obj) { obj.address.present? && obj.address_changed? }
 
   belongs_to :organizer
 
